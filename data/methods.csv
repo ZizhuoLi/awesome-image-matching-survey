@@ -1,0 +1,47 @@
+category,subcategory,method,venue,year,code_url,code_status,notes
+Learnable Detector-Descriptor,Detector-Descriptor,MatchNet,CVPR,2015,,N/A,Survey-covered early deep descriptor
+Learnable Detector-Descriptor,Detector-Descriptor,DeepDesc,ICCV,2015,,N/A,Survey-covered early deep descriptor
+Learnable Detector-Descriptor,Detector-Descriptor,LIFT,ECCV,2016,https://github.com/cvlab-epfl/LIFT,official,Survey Section 3.1
+Learnable Detector-Descriptor,Detector-Descriptor,TFeat,BMVC,2016,,N/A,Survey Section 3.1
+Learnable Detector-Descriptor,Detector-Descriptor,L2-Net,CVPR,2017,https://github.com/yuruntian/L2-Net,official,Survey Section 3.1
+Learnable Detector-Descriptor,Detector-Descriptor,HardNet,NeurIPS,2017,https://github.com/DagnyT/hardnet,official,Survey Section 3.1
+Learnable Detector-Descriptor,Detector-Descriptor,LF-Net,NeurIPS,2018,,N/A,Survey Section 3.1
+Learnable Detector-Descriptor,Detector-Descriptor,SuperPoint,CVPRW,2018,https://github.com/magicleap/SuperPointPretrainedNetwork,official,Survey Section 3.1
+Learnable Detector-Descriptor,Detector-Descriptor,D2-Net,CVPR,2019,https://github.com/mihaidusmanu/d2-net,official,Joint detector-descriptor
+Learnable Detector-Descriptor,Detector-Descriptor,R2D2,NeurIPS,2019,https://github.com/naver/r2d2,official,Joint detector-descriptor
+Learnable Detector-Descriptor,Detector-Descriptor,DISK,NeurIPS,2020,,N/A,Joint detector-descriptor
+Learnable Detector-Descriptor,Detector-Descriptor,ALIKE,IEEE TMM,2022,https://github.com/Shiaoming/ALIKE,official,Lightweight detector-descriptor
+Learnable Detector-Descriptor,Detector-Descriptor,ALIKED,IEEE TIM,2023,https://github.com/Shiaoming/ALIKED,official,ALIKE follow-up
+Learnable Detector-Descriptor,Detector-Descriptor,DeDoDe,3DV,2024,https://github.com/Parskatt/DeDoDe,official,Decoupled detector/descriptor
+Learnable Detector-Descriptor,Detector-Descriptor,XFeat,CVPR,2024,https://github.com/verlab/accelerated_features,official,Lightweight image matching features
+Outlier Filter / Geometric Estimator,Outlier Filter,OANet,ICCV,2019,https://github.com/zjhthu/OANet,official,Order-aware correspondence filtering
+Outlier Filter / Geometric Estimator,Geometric Estimator,NG-RANSAC,ICCV,2019,https://github.com/vislearn/ngransac,official,Neural-guided robust estimation
+Outlier Filter / Geometric Estimator,Outlier Filter,CLNet,ICCV,2021,,N/A,Progressive correspondence pruning
+Outlier Filter / Geometric Estimator,Outlier Filter,ConvMatch,AAAI,2023,,N/A,Motion-coherence-inspired filtering
+Outlier Filter / Geometric Estimator,Geometric Estimator,NeFSAC,ICCV,2023,,N/A,Learnable model quality estimation
+Outlier Filter / Geometric Estimator,Geometric Estimator,RLSAC,ICCV,2023,,N/A,Reinforcement-learning-based sample consensus
+Outlier Filter / Geometric Estimator,Outlier Filter,DeMatch,CVPR,2024,,N/A,Motion decomposition-based filtering
+Middle-End Sparse Matcher,Sparse Matcher,SuperGlue,CVPR,2020,https://github.com/magicleap/SuperGluePretrainedNetwork,official,Graph neural network matcher
+Middle-End Sparse Matcher,Sparse Matcher,SGMNet,ICCV,2021,https://github.com/vdvchen/SGMNet,official,Seeded graph matching
+Middle-End Sparse Matcher,Sparse Matcher,LightGlue,ICCV,2023,https://github.com/cvg/LightGlue,official,Adaptive sparse matcher
+Middle-End Sparse Matcher,Sparse Matcher,OmniGlue,CVPR,2024,https://github.com/google-research/omniglue,official,Foundation-model-guided matcher
+Middle-End Sparse Matcher,Sparse Matcher,MambaGlue,ICRA,2025,https://github.com/url-kaist/MambaGlue,official,Mamba-based sparse matcher
+End-to-End Semi-Dense Matcher,Semi-Dense Matcher,NC-Net,NeurIPS,2018,,N/A,Neighborhood consensus filtering
+End-to-End Semi-Dense Matcher,Semi-Dense Matcher,Sparse-NCNet,ECCV,2020,,N/A,Sparse neighborhood consensus
+End-to-End Semi-Dense Matcher,Semi-Dense Matcher,LoFTR,CVPR,2021,https://github.com/zju3dv/LoFTR,official,Detector-free transformer matcher
+End-to-End Semi-Dense Matcher,Semi-Dense Matcher,ASpanFormer,ECCV,2022,https://github.com/apple/ml-aspanformer,official,Adaptive span transformer
+End-to-End Semi-Dense Matcher,Semi-Dense Matcher,AdaMatcher,CVPR,2023,https://github.com/AbyssGaze/AdaMatcher,project_repo,Repo link was announced from the paper page
+End-to-End Semi-Dense Matcher,Semi-Dense Matcher,CasMTR,ICCV,2023,,N/A,Cascaded transformer matcher
+End-to-End Semi-Dense Matcher,Semi-Dense Matcher,EfficientLoFTR,CVPR,2024,https://github.com/zju3dv/EfficientLoFTR,official,Sparse-like speed semi-dense matcher
+End-to-End Dense Matcher,Dense Matcher,DGC-Net,WACV,2019,https://github.com/AaltoVision/DGC-Net,official,Coarse-to-fine dense correspondence
+End-to-End Dense Matcher,Dense Matcher,GOCor,NeurIPS,2020,https://github.com/PruneTruong/DenseMatching,library,GOCor is included in DenseMatching
+End-to-End Dense Matcher,Dense Matcher,PDC-Net,ICCV,2021,https://github.com/PruneTruong/DenseMatching,library,PDC-Net is included in DenseMatching
+End-to-End Dense Matcher,Dense Matcher,COTR,ICCV,2021,https://github.com/ubc-vision/COTR,official,Functional correspondence architecture
+End-to-End Dense Matcher,Dense Matcher,DKM,CVPR,2023,https://github.com/Parskatt/DKM,official,Dense kernelized matching
+End-to-End Dense Matcher,Dense Matcher,RoMa,CVPR,2024,https://github.com/Parskatt/RoMa,official,Robust dense feature matching
+Pose Regressor,Deep Homography Estimation,DHN,arXiv,2016,,N/A,Deep homography estimation
+Pose Regressor,Relative Pose Regression,RPNet,ECCVW,2018,,N/A,End-to-end relative camera pose estimation
+Pose Regressor,Deep Homography Estimation,IHN,CVPR,2022,https://github.com/imdumpl78/IHN,project_repo,Repo link exposed from paper page
+Pose Regressor,Relative Pose Regression,Map-free,ECCV,2022,https://github.com/nianticlabs/map-free-reloc,official,Metric pose relative to a single image
+Pose Regressor,Deep Homography Estimation,RHWF,CVPR,2023,https://github.com/imdumpl78/RHWF,project_repo,Repo link exposed from paper page
+Pose Regressor,Relative Pose Regression,SRPose,ECCV,2025,,N/A,Sparse-keypoint pose regression
