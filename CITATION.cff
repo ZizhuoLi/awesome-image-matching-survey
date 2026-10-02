@@ -1,6 +1,9 @@
 cff-version: 1.2.0
-message: "If you use this repository, please cite the associated survey paper."
-title: "Awesome Learning-based Image Matching"
+message: "If you use this repository, please cite the survey below."
+title: "Awesome Image Matching: paper list for 'Deep Learning Reforms Image Matching: A Survey and Outlook'"
+type: dataset
+repository-code: "https://github.com/ZizhuoLi/awesome-image-matching-survey"
+license: MIT
 authors:
   - family-names: Zhang
     given-names: Shihua
@@ -20,9 +23,6 @@ authors:
     given-names: Hao
   - family-names: Ma
     given-names: Jiayi
-repository-code: "https://github.com/ZizhuoLi/awesome-image-matching-survey"
-version: "0.1.0"
-date-released: "2026-05-26"
 preferred-citation:
   type: article
   title: "Deep Learning Reforms Image Matching: A Survey and Outlook"
@@ -45,5 +45,9 @@ preferred-citation:
       given-names: Hao
     - family-names: Ma
       given-names: Jiayi
-  journal: "International Journal of Computer Vision"
-  year: 2026
+  journal: "arXiv preprint arXiv:2506.04619"
+  year: 2025
+  identifiers:
+    - type: other
+      value: "arXiv:2506.04619"
+  url: "https://arxiv.org/abs/2506.04619"

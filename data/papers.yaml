@@ -1,0 +1,2820 @@
+# Source of the paper list in README.md. Edit this file, then run: python scripts/build_readme.py
+#
+# sections: README structure in display order. Papers attach to a section through its `id`.
+# papers:   name, title, venue, year, section are required; paper (link), code (official repo) and
+#           highlight (representative method in the survey timeline) are optional.
+sections:
+- id: classical
+  level: 2
+  emoji: 📜
+  title: Classical Image Matching Pipeline
+  description: 'The handcrafted pipeline that learning-based methods build on (Section 2 of the survey): detectors and descriptors such as SIFT and ORB, consensus-based mismatch removal, and RANSAC-family robust estimators.'
+  collapsed: true
+- level: 2
+  emoji: 🧩
+  title: Alternative Learnable Step
+  description: Methods that replace **one step** of the classical pipeline with a learnable counterpart, while matching itself still relies on descriptor similarity (Section 3 of the survey).
+- level: 3
+  title: Learnable Detector-Descriptor
+  figure: assets/detector_descriptor.png
+  width: 75%
+  caption: Frameworks of isolated and joint learnable detector-descriptors.
+  description: Learnable replacements for keypoint detection and description, the first stage to be learned. Isolated methods learn the detector or the descriptor separately; joint methods detect and describe within one model, with cascaded, branched, or decoupled structures.
+- id: ldd-detector
+  level: 4
+  title: Learnable Detector
+  context: Isolated detector-descriptor
+  description: Learn where to detect keypoints that are reliable and repeatable across views.
+- id: ldd-descriptor
+  level: 4
+  title: Learnable Descriptor
+  context: Isolated detector-descriptor
+  description: Learn discriminative descriptions of given keypoints that are invariant to viewpoint and appearance changes, from early metric learning to deep patch descriptors and context-aware descriptors.
+- id: ldd-cascaded
+  level: 4
+  title: Cascaded Structure
+  context: Joint detector-descriptor
+  description: Detection and description are performed sequentially, either detect-then-describe (e.g., LIFT, LF-Net) or describe-then-detect (e.g., D2-Net).
+- id: ldd-branched
+  level: 4
+  title: Branched Structure
+  context: Joint detector-descriptor
+  description: A shared backbone feeds parallel detection and description heads (e.g., SuperPoint, R2D2, DISK, ALIKED).
+- id: ldd-decoupled
+  level: 4
+  title: Decoupled Structure
+  context: Joint detector-descriptor
+  description: Detector and descriptor are trained separately but designed to work together (e.g., DeDoDe, XFeat, RDD).
+- id: ldd-application
+  level: 4
+  title: Application-Specific Features
+  context: Learnable detector-descriptor
+  description: Local features tailored to texture images, retinal images, low-light and underwater scenes, deformable objects, motion blur, and specific robotics tasks.
+- id: ldd-refinement
+  level: 4
+  title: Keypoint and Match Refinement
+  context: Learnable detector-descriptor
+  description: Refine the keypoints or matches produced by existing detectors instead of designing a new detector.
+- level: 3
+  title: Learnable Outlier Filter
+  figure: assets/outlier_filter.png
+  width: 75%
+  caption: Frameworks of context exploration and motion coherence-guided outlier filters.
+  description: Classify putative correspondences into inliers and outliers, usually from their coordinates alone.
+- id: of-context
+  level: 4
+  title: Context Exploration Method
+  context: Learnable outlier filter
+  description: Aggregate global and local context from other correspondences with normalization, pooling, graphs, attention, or state-space models.
+- id: of-coherence
+  level: 4
+  title: Motion Coherence-Guided Method
+  context: Learnable outlier filter
+  description: Explicitly estimate or regularize the smooth motion field formed by inliers, and identify inliers by their consistency with it.
+- level: 3
+  title: Learnable Geometric Estimator
+  figure: assets/estimator.png
+  width: 60%
+  caption: Frameworks of least squares-based, RANSAC-variant, and unsupervised learnable estimators.
+  description: Learnable components that operate inside model estimation, i.e., in solving, minimal-set sampling, or hypothesis scoring.
+- id: ge-ls
+  level: 4
+  title: Least Squares-Based Method
+  context: Learnable geometric estimator
+  description: Iteratively reweighted least squares with learned correspondence weights.
+- id: ge-sampling
+  level: 4
+  title: Learnable Minimal Set Sampling
+  context: Variants of RANSAC
+  description: Learn where RANSAC should sample minimal sets.
+- id: ge-selection
+  level: 4
+  title: Learnable Hypothesis Selection
+  context: Variants of RANSAC
+  description: Learn to score hypotheses or to reject unpromising minimal samples before model estimation.
+- id: ge-unsup
+  level: 4
+  title: Unsupervised Learning Method
+  context: Learnable geometric estimator
+  description: Learn consensus maximization without ground-truth models, e.g., with reinforcement learning.
+- level: 2
+  emoji: 🔗
+  title: Merged Learnable Module
+  description: Methods that **merge several consecutive steps** of the classical pipeline into one network (Section 4 of the survey).
+- id: sparse
+  level: 3
+  title: Middle-End Sparse Matcher
+  figure: assets/sparse_matcher.png
+  width: 85%
+  caption: Framework of middle-end sparse matchers.
+  description: Merge the feature matcher and the outlier filter. Attention-based graph neural networks jointly reason over keypoint positions and descriptors and solve an assignment problem.
+- level: 3
+  title: End-to-End Semi-Dense Matcher
+  figure: assets/semidense_matcher.png
+  width: 90%
+  caption: Frameworks of end-to-end semi-dense matchers.
+  description: Detector-free matchers that match coarse patches directly from the image pair and then refine the matches to sub-pixel accuracy.
+- id: semi-nc
+  level: 4
+  title: Neighbourhood Consensus Filtering
+  context: Semi-dense matcher
+  description: Regularize a 4D correlation volume with (sparse) 4D convolutions to enforce neighbourhood consensus.
+- id: semi-comm
+  level: 4
+  title: Intra-/Inter-Image Communication
+  context: Semi-dense matcher
+  description: Transformer-based self- and cross-attention in a coarse-to-fine design pioneered by LoFTR, improved for accuracy, efficiency, and multi-view consistency.
+- level: 3
+  title: End-to-End Dense Matcher
+  figure: assets/dense_matcher.png
+  width: 90%
+  caption: Frameworks of end-to-end dense matchers.
+  description: Regress a dense flow field, usually with a confidence map, between two views, unifying local feature matching and optical flow.
+- id: dense-g2l
+  level: 4
+  title: Global-to-Local Architecture
+  context: Dense matcher
+  description: Global correlation at a coarse level followed by local refinement, including probabilistic matchers, foundation-model-based matchers, and optical-flow-style models.
+- id: dense-func
+  level: 4
+  title: Functional Correspondence Architecture
+  context: Dense matcher
+  description: Take a query coordinate in one image and directly regress the corresponding coordinate in the other.
+- level: 3
+  title: Pose Regressor
+  figure: assets/pose_regressor.png
+  width: 60%
+  caption: Frameworks of deep homography estimation and relative pose regression.
+  description: Bypass explicit correspondences and regress the two-view transformation directly from the image pair.
+- id: pr-dhe
+  level: 4
+  title: Deep Homography Estimation
+  context: Pose regressor
+  description: Estimate a homography with 4-point offset regression, IC-LK-style optimization, or other parameterizations, with supervised or unsupervised training.
+- id: pr-rt
+  level: 4
+  title: Rotation-Translation Regression
+  context: Relative pose regression
+  description: Regress the relative rotation and translation (or the rotation only) from an image pair.
+- id: pr-fe
+  level: 4
+  title: Fundamental/Essential Matrix Regression
+  context: Relative pose regression
+  description: Regress the fundamental or essential matrix and decompose it into a relative pose.
+- id: datasets
+  level: 2
+  emoji: 📊
+  title: Datasets and Benchmarks
+  description: Datasets and benchmarks used for training and evaluation in the survey (Section 5), together with the newer benchmarks discussed in its outlook.
+- id: tools
+  level: 2
+  emoji: 🧰
+  title: Toolboxes
+  description: Reconstruction and localization frameworks used in the survey's evaluation protocols.
+- level: 2
+  emoji: 🔭
+  title: Future Directions
+  description: Open problems highlighted in the outlook of the survey (Section 6), with the works it discusses. Entries already listed above are linked at the end of each direction.
+- id: ft-generalization
+  level: 3
+  title: Generalization across Domains
+  description: Data engines that derive supervision beyond SfM and RGB-D reconstructions, such as Internet videos, single images lifted to 3D, rendered novel views, and aerial-ground imagery.
+  see_also:
+  - MatchGS
+  - LoMa
+  - AnyMatch
+  - AerialMegaDepth
+  - AirZoo
+  - RUBIK
+  - AerialExtreMatch
+- id: ft-uncertainty
+  level: 3
+  title: Composability and Calibrated Uncertainty
+  description: Learned modules that remain valid for arbitrary inputs, and correspondences with calibrated uncertainties as a common interface between modules.
+  see_also:
+  - MCD
+  - Match Any Keypoints
+  - XRefine
+  - GMM-IKRS
+  - RaCo
+  - PDC-Net
+  - SURE
+  - Cai et al.
+- id: ft-efficiency
+  level: 3
+  title: Efficiency at the System Level
+  description: Spend computation only where matches can exist, by restricting matching to overlapping or semantically matched areas, pruning tokens, and caching per-image representations.
+  see_also:
+  - Efficient LoFTR
+  - ArgMatch
+  - ZippyPoint
+  - XFeat
+  - LightGlue
+  - Toida and Hotta
+  - UltraMatch
+  - DMS
+- id: ft-multiview
+  level: 3
+  title: From Pairwise to Multi-View Matching
+  description: Treat the track, not the image pair, as the unit of matching.
+  see_also:
+  - Detect by Track
+  - MV-RoMa
+  - XRefine
+  - TraqPoint
+- id: ft-lgm
+  level: 3
+  title: Large Geometric Models
+  description: Feed-forward 3D models that predict pointmaps and cameras from two or more views, and their role as priors for matching and pose estimation.
+  see_also:
+  - MASt3R
+  - RoMa-Ω
+- id: ft-multimodal
+  level: 3
+  title: Multi-Modal Matching
+  description: Matching across infrared, SAR, event, depth, and other modalities, and across dimensions (2D-3D).
+  see_also:
+  - MapGlue
+  - UniCorrn
+  - XoFTR
+  - ReDFeat
+  - SGPFeat
+  - CrossFeat
+  - CRFT
+- id: surveys
+  level: 2
+  emoji: 📚
+  title: Related Surveys and Evaluations
+  description: Earlier surveys, theses, and evaluation studies on image matching and local features.
+papers:
+- name: Zitová and Flusser
+  title: 'Image Registration Methods: A Survey'
+  venue: IVC
+  year: 2003
+  section: surveys
+  paper: https://doi.org/10.1016/s0262-8856(03)00137-9
+- name: Mikolajczyk et al.
+  title: 'A Comparison of Affine Region Detectors'
+  venue: IJCV
+  year: 2005
+  section: surveys
+  paper: https://doi.org/10.1007/s11263-005-3848-x
+- name: Mikolajczyk and Schmid
+  title: 'A Performance Evaluation of Local Descriptors'
+  venue: TPAMI
+  year: 2005
+  section: surveys
+  paper: https://doi.org/10.1109/tpami.2005.188
+- name: Aanæs et al.
+  title: 'Interesting Interest Points: A Comparative Study of Interest Point Performance on a Unique Data Set'
+  venue: IJCV
+  year: 2012
+  section: surveys
+  paper: https://doi.org/10.1007/s11263-011-0473-8
+- name: Heinly et al.
+  title: 'Comparative Evaluation of Binary Features'
+  venue: ECCV
+  year: 2012
+  section: surveys
+  paper: https://doi.org/10.1007/978-3-642-33709-3_54
+- name: Awrangjeb et al.
+  title: 'Performance Comparisons of Contour-Based Corner Detectors'
+  venue: TIP
+  year: 2012
+  section: surveys
+  paper: https://doi.org/10.1109/tip.2012.2200493
+- name: Schönberger et al.
+  title: 'Comparative Evaluation of Hand-Crafted and Learned Local Features'
+  venue: CVPR
+  year: 2017
+  section: surveys
+  paper: https://openaccess.thecvf.com/content_cvpr_2017/html/Schonberger_Comparative_Evaluation_of_CVPR_2017_paper.html
+  code: https://github.com/ahojnnes/local-feature-evaluation
+- name: Ma et al.
+  title: 'Image Matching from Handcrafted to Deep Features: A Survey'
+  venue: IJCV
+  year: 2021
+  section: surveys
+  paper: https://doi.org/10.1007/s11263-020-01359-2
+- name: Jiang et al.
+  title: 'A Review of Multimodal Image Matching: Methods and Applications'
+  venue: Inf. Fusion
+  year: 2021
+  section: surveys
+  paper: https://doi.org/10.1016/j.inffus.2021.02.012
+- name: Mishkin (PhD thesis)
+  title: 'Learning and Crafting for the Wide Multiple Baseline Stereo'
+  venue: PhD Thesis
+  year: 2021
+  section: surveys
+  paper: https://arxiv.org/abs/2112.12027
+- name: Xu et al.
+  title: 'Local Feature Matching Using Deep Learning: A Survey'
+  venue: Inf. Fusion
+  year: 2024
+  section: surveys
+  paper: https://arxiv.org/abs/2401.17592
+- name: Liao et al.
+  title: 'Local Feature Matching from Detector-Based to Detector-Free: A Survey'
+  venue: Appl. Intell.
+  year: 2024
+  section: surveys
+  paper: https://doi.org/10.1007/s10489-024-05330-3
+- name: Li et al.
+  title: 'Deep Learning in Remote Sensing Image Matching: A Survey'
+  venue: ISPRS J
+  year: 2025
+  section: surveys
+  paper: https://doi.org/10.1016/j.isprsjprs.2025.04.001
+- name: Edstedt (PhD thesis)
+  title: 'Towards the Next Generation of 3D Reconstruction'
+  venue: PhD Thesis
+  year: 2025
+  section: surveys
+  paper: https://doi.org/10.3384/9789181181906
+- name: Harris
+  title: 'A Combined Corner and Edge Detector'
+  venue: AVC
+  year: 1988
+  section: classical
+  paper: https://doi.org/10.5244/c.2.23
+- name: Shi-Tomasi
+  title: 'Good Features to Track'
+  venue: CVPR
+  year: 1994
+  section: classical
+  paper: https://doi.org/10.1109/cvpr.1994.323794
+- name: Schmid and Mohr
+  title: 'Matching by Local Invariants'
+  venue: INRIA Tech. Report
+  year: 1995
+  section: classical
+  paper: https://inria.hal.science/inria-00074046
+- name: Trajkovic and Hedley
+  title: 'Fast Corner Detection'
+  venue: IVC
+  year: 1998
+  section: classical
+  paper: https://doi.org/10.1016/S0262-8856(97)00056-5
+- name: SIFT
+  title: 'Object Recognition from Local Scale-Invariant Features'
+  venue: ICCV
+  year: 1999
+  section: classical
+  paper: https://doi.org/10.1109/iccv.1999.790410
+- name: SIFT
+  title: 'Distinctive Image Features from Scale-Invariant Keypoints'
+  venue: IJCV
+  year: 2004
+  section: classical
+  paper: https://doi.org/10.1023/b:visi.0000029664.99615.94
+- name: MSER
+  title: 'Robust Wide-Baseline Stereo from Maximally Stable Extremal Regions'
+  venue: IVC
+  year: 2004
+  section: classical
+  paper: https://doi.org/10.1016/j.imavis.2004.02.006
+- name: BRIEF
+  title: 'BRIEF: Binary Robust Independent Elementary Features'
+  venue: ECCV
+  year: 2010
+  section: classical
+  paper: https://doi.org/10.1007/978-3-642-15561-1_56
+- name: ORB
+  title: 'ORB: An Efficient Alternative to SIFT or SURF'
+  venue: ICCV
+  year: 2011
+  section: classical
+  paper: https://doi.org/10.1109/iccv.2011.6126544
+- name: Lin et al.
+  title: 'Illumination-Insensitive Binary Descriptor for Visual Measurement Based on Local Inter-Patch Invariance'
+  venue: TIM
+  year: 2023
+  section: classical
+  paper: https://arxiv.org/abs/2305.07943
+- name: VFC
+  title: 'Robust Point Matching via Vector Field Consensus'
+  venue: TIP
+  year: 2014
+  section: classical
+  paper: https://doi.org/10.1109/tip.2014.2307478
+  code: https://github.com/jiayi-ma/VFC
+- name: GMS
+  title: 'GMS: Grid-Based Motion Statistics for Fast, Ultra-Robust Feature Correspondence'
+  venue: CVPR
+  year: 2017
+  section: classical
+  paper: https://openaccess.thecvf.com/content_cvpr_2017/html/Bian_GMS_Grid-based_Motion_CVPR_2017_paper.html
+  code: https://github.com/JiawangBian/GMS-Feature-Matcher
+- name: RANSAC
+  title: 'Random Sample Consensus: A Paradigm for Model Fitting with Applications to Image Analysis and Automated Cartography'
+  venue: Commun. ACM
+  year: 1981
+  section: classical
+  paper: https://doi.org/10.1145/358669.358692
+- name: Torr and Murray
+  title: 'The Development and Comparison of Robust Methods for Estimating the Fundamental Matrix'
+  venue: IJCV
+  year: 1997
+  section: classical
+  paper: https://doi.org/10.1023/a:1007927408552
+- name: MLESAC
+  title: 'MLESAC: A New Robust Estimator with Application to Estimating Image Geometry'
+  venue: CVIU
+  year: 2000
+  section: classical
+  paper: https://doi.org/10.1006/cviu.1999.0832
+- name: LO-RANSAC
+  title: 'Locally Optimized RANSAC'
+  venue: GCPR
+  year: 2003
+  section: classical
+  paper: https://doi.org/10.1007/978-3-540-45243-0_31
+- name: IC-LK
+  title: 'Lucas-Kanade 20 Years On: A Unifying Framework'
+  venue: IJCV
+  year: 2004
+  section: classical
+  paper: https://doi.org/10.1023/b:visi.0000011205.11775.fd
+- name: USAC
+  title: 'USAC: A Universal Framework for Random Sample Consensus'
+  venue: TPAMI
+  year: 2013
+  section: classical
+  paper: https://doi.org/10.1109/tpami.2012.257
+- name: GC-RANSAC
+  title: 'Graph-Cut RANSAC'
+  venue: CVPR
+  year: 2018
+  section: classical
+  paper: https://arxiv.org/abs/1706.00984
+  code: https://github.com/danini/graph-cut-ransac
+- name: MAGSAC++
+  title: 'MAGSAC++, a Fast, Reliable and Accurate Robust Estimator'
+  venue: CVPR
+  year: 2020
+  section: classical
+  paper: https://arxiv.org/abs/1912.05909
+  code: https://github.com/danini/magsac
+- name: FAST
+  title: 'Machine Learning for High-Speed Corner Detection'
+  venue: ECCV
+  year: 2006
+  section: ldd-detector
+  paper: https://doi.org/10.1007/11744023_34
+  highlight: true
+- name: Kienzle et al.
+  title: 'Learning an Interest Operator from Human Eye Movements'
+  venue: CVPRW
+  year: 2006
+  section: ldd-detector
+  paper: https://doi.org/10.1109/cvprw.2006.116
+- name: FAST-ER
+  title: 'Faster and Better: A Machine Learning Approach to Corner Detection'
+  venue: TPAMI
+  year: 2010
+  section: ldd-detector
+  paper: https://arxiv.org/abs/0810.2434
+- name: Richardson and Olson
+  title: 'Learning Convolutional Filters for Interest Point Detection'
+  venue: ICRA
+  year: 2013
+  section: ldd-detector
+  paper: https://doi.org/10.1109/icra.2013.6630639
+- name: Hartmann et al.
+  title: 'Predicting Matchability'
+  venue: CVPR
+  year: 2014
+  section: ldd-detector
+  paper: https://openaccess.thecvf.com/content_cvpr_2014/html/Hartmann_Predicting_Matchability_2014_CVPR_paper.html
+- name: TILDE
+  title: 'TILDE: A Temporally Invariant Learned DEtector'
+  venue: CVPR
+  year: 2015
+  section: ldd-detector
+  paper: https://arxiv.org/abs/1411.4568
+  code: https://github.com/vcg-uvic/TILDE
+- name: Lenc et al.
+  title: 'Learning Covariant Feature Detectors'
+  venue: ECCVW
+  year: 2016
+  section: ldd-detector
+  paper: https://arxiv.org/abs/1605.01224
+  code: https://github.com/lenck/ddet
+- name: TCDET
+  title: 'Learning Discriminative and Transformation Covariant Local Feature Detectors'
+  venue: CVPR
+  year: 2017
+  section: ldd-detector
+  paper: https://openaccess.thecvf.com/content_cvpr_2017/html/Zhang_Learning_Discriminative_and_CVPR_2017_paper.html
+  code: https://github.com/ColumbiaDVMM/Transform_Covariant_Detector
+- name: Quad-Networks
+  title: 'Quad-Networks: Unsupervised Learning to Rank for Interest Point Detection'
+  venue: CVPR
+  year: 2017
+  section: ldd-detector
+  paper: https://arxiv.org/abs/1611.07571
+- name: MagicPoint
+  title: 'Toward Geometric Deep SLAM'
+  venue: arXiv
+  year: 2017
+  section: ldd-detector
+  paper: https://arxiv.org/abs/1707.07410
+- name: Key.Net
+  title: 'Key.Net: Keypoint Detection by Handcrafted and Learned CNN Filters'
+  venue: ICCV
+  year: 2019
+  section: ldd-detector
+  paper: https://arxiv.org/abs/1904.00889
+  code: https://github.com/axelBarroso/Key.Net
+- name: ELF
+  title: 'ELF: Embedded Localisation of Features in Pre-Trained CNN'
+  venue: ICCV
+  year: 2019
+  section: ldd-detector
+  paper: https://arxiv.org/abs/1907.03261
+  code: https://github.com/abenbihi/elf
+- name: D2D
+  title: 'D2D: Keypoint Extraction with Describe to Detect Approach'
+  venue: ACCV
+  year: 2020
+  section: ldd-detector
+  paper: https://arxiv.org/abs/2005.13605
+- name: REKD
+  title: 'Self-Supervised Equivariant Learning for Oriented Keypoint Detection'
+  venue: CVPR
+  year: 2022
+  section: ldd-detector
+  paper: https://arxiv.org/abs/2204.08613
+  code: https://github.com/bluedream1121/REKD
+- name: Key.Net (TPAMI)
+  title: 'Key.Net: Keypoint Detection by Handcrafted and Learned CNN Filters Revisited'
+  venue: TPAMI
+  year: 2023
+  section: ldd-detector
+  paper: https://doi.org/10.1109/tpami.2022.3145820
+  code: https://github.com/axelBarroso/Key.Net-Pytorch
+- name: NeSS-ST
+  title: 'NeSS-ST: Detecting Good and Stable Keypoints with a Neural Stability Score and the Shi-Tomasi Detector'
+  venue: ICCV
+  year: 2023
+  section: ldd-detector
+  paper: https://arxiv.org/abs/2307.01069
+  code: https://github.com/KonstantinPakulev/NeSS-ST
+- name: MorseDet
+  title: 'Scale-Free Image Keypoints Using Differentiable Persistent Homology'
+  venue: ICML
+  year: 2024
+  section: ldd-detector
+  paper: https://arxiv.org/abs/2406.01315
+  code: https://github.com/gbarbarani/MorseDet
+- name: DaD
+  title: 'DaD: Distilled Reinforcement Learning for Diverse Keypoint Detection'
+  venue: arXiv
+  year: 2025
+  section: ldd-detector
+  paper: https://arxiv.org/abs/2503.07347
+  code: https://github.com/Parskatt/dad
+- name: RaCo
+  title: 'RaCo: Ranking and Covariance for Practical Learned Keypoints'
+  venue: 3DV
+  year: 2026
+  section: ldd-detector
+  paper: https://arxiv.org/abs/2602.15755
+  code: https://github.com/cvg/RaCo
+  highlight: true
+- name: PCA-SIFT
+  title: 'PCA-SIFT: A More Distinctive Representation for Local Image Descriptors'
+  venue: CVPR
+  year: 2004
+  section: ldd-descriptor
+  paper: https://doi.org/10.1109/cvpr.2004.1315206
+  highlight: true
+- name: Hua et al.
+  title: 'Discriminant Embedding for Local Image Descriptors'
+  venue: ICCV
+  year: 2007
+  section: ldd-descriptor
+  paper: https://doi.org/10.1109/iccv.2007.4408857
+- name: Winder and Brown
+  title: 'Learning Local Image Descriptors'
+  venue: CVPR
+  year: 2007
+  section: ldd-descriptor
+  paper: https://doi.org/10.1109/cvpr.2007.382971
+- name: Cai et al.
+  title: 'Learning Linear Discriminant Projections for Dimensionality Reduction of Image Descriptors'
+  venue: TPAMI
+  year: 2011
+  section: ldd-descriptor
+  paper: https://doi.org/10.1109/tpami.2010.89
+- name: Brown et al.
+  title: 'Discriminative Learning of Local Image Descriptors'
+  venue: TPAMI
+  year: 2011
+  section: ldd-descriptor
+  paper: https://doi.org/10.1109/tpami.2010.54
+- name: LDAHash
+  title: 'LDAHash: Improved Matching with Smaller Descriptors'
+  venue: TPAMI
+  year: 2012
+  section: ldd-descriptor
+  paper: https://doi.org/10.1109/tpami.2011.103
+- name: BinBoost
+  title: 'Boosting Binary Keypoint Descriptors'
+  venue: CVPR
+  year: 2013
+  section: ldd-descriptor
+  paper: https://openaccess.thecvf.com/content_cvpr_2013/html/Trzcinski_Boosting_Binary_Keypoint_2013_CVPR_paper.html
+- name: Simonyan et al.
+  title: 'Learning Local Feature Descriptors Using Convex Optimisation'
+  venue: TPAMI
+  year: 2014
+  section: ldd-descriptor
+  paper: https://doi.org/10.1109/tpami.2014.2301163
+- name: DeepCompare
+  title: 'Learning to Compare Image Patches via Convolutional Neural Networks'
+  venue: CVPR
+  year: 2015
+  section: ldd-descriptor
+  paper: https://arxiv.org/abs/1504.03641
+  code: https://github.com/szagoruyko/cvpr15deepcompare
+  highlight: true
+- name: MatchNet
+  title: 'MatchNet: Unifying Feature and Metric Learning for Patch-Based Matching'
+  venue: CVPR
+  year: 2015
+  section: ldd-descriptor
+  paper: https://openaccess.thecvf.com/content_cvpr_2015/html/Han_MatchNet_Unifying_Feature_2015_CVPR_paper.html
+  code: https://github.com/hanxf/matchnet
+  highlight: true
+- name: DeepDesc
+  title: 'Discriminative Learning of Deep Convolutional Feature Point Descriptors'
+  venue: ICCV
+  year: 2015
+  section: ldd-descriptor
+  paper: https://openaccess.thecvf.com/content_iccv_2015/html/Simo-Serra_Discriminative_Learning_of_ICCV_2015_paper.html
+  code: https://github.com/etrulls/deepdesc-release
+  highlight: true
+- name: TFeat
+  title: 'Learning Local Feature Descriptors with Triplets and Shallow Convolutional Neural Networks'
+  venue: BMVC
+  year: 2016
+  section: ldd-descriptor
+  paper: https://doi.org/10.5244/c.30.119
+  code: https://github.com/vbalnt/tfeat
+- name: PN-Net
+  title: 'PN-Net: Conjoined Triple Deep Network for Learning Local Image Descriptors'
+  venue: arXiv
+  year: 2016
+  section: ldd-descriptor
+  paper: https://arxiv.org/abs/1601.05030
+  code: https://github.com/vbalnt/pnnet
+- name: TNet
+  title: 'Learning Local Image Descriptors with Deep Siamese and Triplet Convolutional Networks by Minimising Global Loss Functions'
+  venue: CVPR
+  year: 2016
+  section: ldd-descriptor
+  paper: https://arxiv.org/abs/1512.09272
+  code: https://github.com/vijaykbg/deep-patchmatch
+- name: L2-Net
+  title: 'L2-Net: Deep Learning of Discriminative Patch Descriptor in Euclidean Space'
+  venue: CVPR
+  year: 2017
+  section: ldd-descriptor
+  paper: https://openaccess.thecvf.com/content_cvpr_2017/html/Tian_L2-Net_Deep_Learning_CVPR_2017_paper.html
+  code: https://github.com/yuruntian/L2-Net
+  highlight: true
+- name: HardNet
+  title: 'Working Hard to Know Your Neighbor''s Margins: Local Descriptor Learning Loss'
+  venue: NeurIPS
+  year: 2017
+  section: ldd-descriptor
+  paper: https://arxiv.org/abs/1705.10872
+  code: https://github.com/DagnyT/hardnet
+- name: GOR
+  title: 'Learning Spread-Out Local Feature Descriptors'
+  venue: ICCV
+  year: 2017
+  section: ldd-descriptor
+  paper: https://arxiv.org/abs/1708.06320
+  code: https://github.com/ColumbiaDVMM/Spread-out_Local_Feature_Descriptor
+- name: Keller et al.
+  title: 'Learning Deep Descriptors with Scale-Aware Triplet Networks'
+  venue: CVPR
+  year: 2018
+  section: ldd-descriptor
+  paper: https://openaccess.thecvf.com/content_cvpr_2018/html/Keller_Learning_Deep_Descriptors_CVPR_2018_paper.html
+- name: DOAP
+  title: 'Local Descriptors Optimized for Average Precision'
+  venue: CVPR
+  year: 2018
+  section: ldd-descriptor
+  paper: https://arxiv.org/abs/1804.05312
+  code: https://kunhe.github.io/assets/DOAP/index.html
+- name: GeoDesc
+  title: 'GeoDesc: Learning Local Descriptors by Integrating Geometry Constraints'
+  venue: ECCV
+  year: 2018
+  section: ldd-descriptor
+  paper: https://arxiv.org/abs/1807.06294
+  code: https://github.com/lzx551402/geodesc
+- name: AffNet
+  title: 'Repeatability Is Not Enough: Learning Affine Regions via Discriminability'
+  venue: ECCV
+  year: 2018
+  section: ldd-descriptor
+  paper: https://arxiv.org/abs/1711.06704
+  code: https://github.com/ducha-aiki/affnet
+- name: SOSNet
+  title: 'SOSNet: Second Order Similarity Regularization for Local Descriptor Learning'
+  venue: CVPR
+  year: 2019
+  section: ldd-descriptor
+  paper: https://arxiv.org/abs/1904.05019
+  code: https://github.com/scape-research/SOSNet
+- name: ContextDesc
+  title: 'ContextDesc: Local Descriptor Augmentation with Cross-Modality Context'
+  venue: CVPR
+  year: 2019
+  section: ldd-descriptor
+  paper: https://arxiv.org/abs/1904.04084
+  code: https://github.com/lzx551402/contextdesc
+- name: Pultar et al.
+  title: 'Leveraging Outdoor Webcams for Local Descriptor Learning'
+  venue: CVWW
+  year: 2019
+  section: ldd-descriptor
+  paper: https://arxiv.org/abs/1901.09780
+  code: https://github.com/pultarmi/AMOS_patches
+- name: Log-Polar
+  title: 'Beyond Cartesian Representations for Local Descriptors'
+  venue: ICCV
+  year: 2019
+  section: ldd-descriptor
+  paper: https://arxiv.org/abs/1908.05547
+  code: https://github.com/cvlab-epfl/log-polar-descriptors
+- name: GIFT
+  title: 'GIFT: Learning Transformation-Invariant Dense Visual Descriptors via Group CNNs'
+  venue: NeurIPS
+  year: 2019
+  section: ldd-descriptor
+  paper: https://arxiv.org/abs/1911.05932
+  code: https://github.com/zju3dv/GIFT
+- name: CAPS
+  title: 'Learning Feature Descriptors using Camera Pose Supervision'
+  venue: ECCV
+  year: 2020
+  section: ldd-descriptor
+  paper: https://arxiv.org/abs/2004.13324
+  code: https://github.com/qianqianwang68/caps
+  highlight: true
+- name: Toft et al.
+  title: 'Single-Image Depth Prediction Makes Feature Matching Easier'
+  venue: ECCV
+  year: 2020
+  section: ldd-descriptor
+  paper: https://arxiv.org/abs/2008.09497
+  code: https://github.com/nianticlabs/rectified-features
+- name: HyNet
+  title: 'HyNet: Learning Local Descriptor with Hybrid Similarity Measure and Triplet Loss'
+  venue: NeurIPS
+  year: 2020
+  section: ldd-descriptor
+  paper: https://arxiv.org/abs/2006.10202
+  code: https://github.com/yuruntian/HyNet
+- name: LISRD
+  title: 'Online Invariance Selection for Local Feature Descriptors'
+  venue: ECCV
+  year: 2020
+  section: ldd-descriptor
+  paper: https://arxiv.org/abs/2007.08988
+  code: https://github.com/rpautrat/LISRD
+- name: RoRD
+  title: 'RoRD: Rotation-Robust Descriptors and Orthographic Views for Local Feature Matching'
+  venue: IROS
+  year: 2021
+  section: ldd-descriptor
+  paper: https://arxiv.org/abs/2103.08573
+  code: https://github.com/UditSinghParihar/RoRD
+- name: MTLDesc
+  title: 'MTLDesc: Looking Wider to Describe Better'
+  venue: AAAI
+  year: 2022
+  section: ldd-descriptor
+  paper: https://arxiv.org/abs/2203.07003
+  code: https://github.com/vignywang/MTLDesc
+- name: AWDesc
+  title: 'Attention Weighted Local Descriptors'
+  venue: TPAMI
+  year: 2023
+  section: ldd-descriptor
+  paper: https://doi.org/10.1109/tpami.2023.3266728
+  code: https://github.com/vignywang/AWDesc
+- name: FeatureBooster
+  title: 'FeatureBooster: Boosting Feature Descriptors with a Lightweight Neural Network'
+  venue: CVPR
+  year: 2023
+  section: ldd-descriptor
+  paper: https://arxiv.org/abs/2211.15069
+  code: https://github.com/SJTU-ViSYS/FeatureBooster
+- name: RELF
+  title: 'Learning Rotation-Equivariant Features for Visual Correspondence'
+  venue: CVPR
+  year: 2023
+  section: ldd-descriptor
+  paper: https://arxiv.org/abs/2303.15472
+  code: https://github.com/bluedream1121/RELF
+- name: Shrestha et al.
+  title: 'Residual Learning for Image Point Descriptors'
+  venue: arXiv
+  year: 2023
+  section: ldd-descriptor
+  paper: https://arxiv.org/abs/2312.15471
+- name: SDGMNet
+  title: 'SDGMNet: Statistic-Based Dynamic Gradient Modulation for Local Descriptor Learning'
+  venue: AAAI
+  year: 2024
+  section: ldd-descriptor
+  paper: https://arxiv.org/abs/2106.04434
+  code: https://github.com/ACuOoOoO/SDGMNet
+- name: MATCHA
+  title: 'MATCHA: Towards Matching Anything'
+  venue: CVPR
+  year: 2025
+  section: ldd-descriptor
+  paper: https://openaccess.thecvf.com/content/CVPR2025/html/Xue_MATCHA_Towards_Matching_Anything_CVPR_2025_paper.html
+  code: https://github.com/nv-dvl/matcha
+- name: CrossFeat
+  title: 'CrossFeat: Bridging Imaging Modalities in Feature Descriptor Space'
+  venue: ECCV
+  year: 2026
+  section: ldd-descriptor
+  paper: https://arxiv.org/abs/2609.00272
+  code: https://github.com/paulschneider01/CrossFeat
+- name: SANDesc
+  title: 'A Streamlined Attention-Based Network for Descriptor Extraction'
+  venue: 3DV
+  year: 2026
+  section: ldd-descriptor
+  paper: https://arxiv.org/abs/2601.13126
+  code: https://github.com/mattiadurso/SANDesc
+- name: LIFT
+  title: 'LIFT: Learned Invariant Feature Transform'
+  venue: ECCV
+  year: 2016
+  section: ldd-cascaded
+  paper: https://arxiv.org/abs/1603.09114
+  code: https://github.com/cvlab-epfl/LIFT
+  highlight: true
+- name: LF-Net
+  title: 'LF-Net: Learning Local Features from Images'
+  venue: NeurIPS
+  year: 2018
+  section: ldd-cascaded
+  paper: https://arxiv.org/abs/1805.09662
+  code: https://github.com/vcg-uvic/lf-net-release
+  highlight: true
+- name: RF-Net
+  title: 'RF-Net: An End-to-End Image Matching Network Based on Receptive Field'
+  venue: CVPR
+  year: 2019
+  section: ldd-cascaded
+  paper: https://arxiv.org/abs/1906.00604
+  code: https://github.com/xuelunshen/rfnet
+- name: D2-Net
+  title: 'D2-Net: A Trainable CNN for Joint Description and Detection of Local Features'
+  venue: CVPR
+  year: 2019
+  section: ldd-cascaded
+  paper: https://arxiv.org/abs/1905.03561
+  code: https://github.com/mihaidusmanu/d2-net
+- name: ASLFeat
+  title: 'ASLFeat: Learning Local Features of Accurate Shape and Localization'
+  venue: CVPR
+  year: 2020
+  section: ldd-cascaded
+  paper: https://arxiv.org/abs/2003.10071
+  code: https://github.com/lzx551402/ASLFeat
+- name: ReDFeat
+  title: 'ReDFeat: Recoupling Detection and Description for Multimodal Feature Learning'
+  venue: TIP
+  year: 2023
+  section: ldd-cascaded
+  paper: https://arxiv.org/abs/2205.07439
+  code: https://github.com/ACuOoOoO/ReDFeat
+- name: S-TREK
+  title: 'S-TREK: Sequential Translation and Rotation Equivariant Keypoints for Local Feature Extraction'
+  venue: ICCV
+  year: 2023
+  section: ldd-cascaded
+  paper: https://arxiv.org/abs/2308.14598
+- name: SGPFeat
+  title: 'SGPFeat: Semantic and Geometric Priors for Multi-Modal Image Matching'
+  venue: AAAI
+  year: 2026
+  section: ldd-cascaded
+  paper: https://doi.org/10.1609/aaai.v40i5.37355
+  code: https://github.com/wbt6661/SGPFeat
+- name: SuperPoint
+  title: 'SuperPoint: Self-Supervised Interest Point Detection and Description'
+  venue: CVPRW
+  year: 2018
+  section: ldd-branched
+  paper: https://arxiv.org/abs/1712.07629
+  code: https://github.com/magicleap/SuperPointPretrainedNetwork
+  highlight: true
+- name: UnsuperPoint
+  title: 'UnsuperPoint: End-to-End Unsupervised Interest Point Detector and Descriptor'
+  venue: arXiv
+  year: 2019
+  section: ldd-branched
+  paper: https://arxiv.org/abs/1907.04011
+- name: R2D2
+  title: 'R2D2: Reliable and Repeatable Detector and Descriptor'
+  venue: NeurIPS
+  year: 2019
+  section: ldd-branched
+  paper: https://arxiv.org/abs/1906.06195
+  code: https://github.com/naver/r2d2
+  highlight: true
+- name: KP2D
+  title: 'Neural Outlier Rejection for Self-Supervised Keypoint Learning'
+  venue: ICLR
+  year: 2020
+  section: ldd-branched
+  paper: https://arxiv.org/abs/1912.10615
+  code: https://github.com/TRI-ML/KP2D
+- name: SEKD
+  title: 'SEKD: Self-Evolving Keypoint Detection and Description'
+  venue: arXiv
+  year: 2020
+  section: ldd-branched
+  paper: https://arxiv.org/abs/2006.05077
+  code: https://github.com/aliyun/Self-Evolving-Keypoint-Demo
+- name: Reinforced Feature Points
+  title: 'Reinforced Feature Points: Optimizing Feature Detection and Description for a High-Level Task'
+  venue: CVPR
+  year: 2020
+  section: ldd-branched
+  paper: https://arxiv.org/abs/1912.00623
+  code: https://github.com/aritrabhowmik/Reinforced-Feature-Points
+- name: DISK
+  title: 'DISK: Learning Local Features with Policy Gradient'
+  venue: NeurIPS
+  year: 2020
+  section: ldd-branched
+  paper: https://arxiv.org/abs/2006.13566
+  code: https://github.com/cvlab-epfl/disk
+  highlight: true
+- name: RaP-Net
+  title: 'RaP-Net: A Region-Wise and Point-Wise Weighting Network to Extract Robust Features for Indoor Localization'
+  venue: IROS
+  year: 2021
+  section: ldd-branched
+  paper: https://arxiv.org/abs/2012.00234
+  code: https://github.com/ivipsourcecode/RaP-Net
+- name: Jung et al.
+  title: 'Local Feature Extraction from Salient Regions by Feature Map Transformation'
+  venue: BMVC
+  year: 2022
+  section: ldd-branched
+  paper: https://arxiv.org/abs/2301.10413
+  code: https://github.com/annee23/BMVC2022_LocalFeature
+- name: LANet
+  title: 'Rethinking Low-Level Features for Interest Point Detection and Description'
+  venue: ACCV
+  year: 2022
+  section: ldd-branched
+  paper: https://openaccess.thecvf.com/content/ACCV2022/html/Wang_Rethinking_Low-level_Features_for_Interest_Point_Detection_and_Description_ACCV_2022_paper.html
+  code: https://github.com/wangch-g/lanet
+- name: ALIKE
+  title: 'ALIKE: Accurate and Lightweight Keypoint Detection and Descriptor Extraction'
+  venue: TMM
+  year: 2023
+  section: ldd-branched
+  paper: https://arxiv.org/abs/2112.02906
+  code: https://github.com/Shiaoming/ALIKE
+- name: ALIKED
+  title: 'ALIKED: A Lighter Keypoint and Descriptor Extraction Network via Deformable Transformation'
+  venue: TIM
+  year: 2023
+  section: ldd-branched
+  paper: https://arxiv.org/abs/2304.03608
+  code: https://github.com/Shiaoming/ALIKED
+  highlight: true
+- name: SiLK
+  title: 'SiLK -- Simple Learned Keypoints'
+  venue: ICCV
+  year: 2023
+  section: ldd-branched
+  paper: https://arxiv.org/abs/2304.06194
+  code: https://github.com/facebookresearch/silk
+- name: ZippyPoint
+  title: 'ZippyPoint: Fast Interest Point Detection, Description, and Matching through Mixed Precision Discretization'
+  venue: CVPRW
+  year: 2023
+  section: ldd-branched
+  paper: https://arxiv.org/abs/2203.03610
+  code: https://github.com/menelaoskanakis/ZippyPoint
+- name: SFD2
+  title: 'SFD2: Semantic-Guided Feature Detection and Description'
+  venue: CVPR
+  year: 2023
+  section: ldd-branched
+  paper: https://arxiv.org/abs/2304.14845
+  code: https://github.com/feixue94/sfd2
+- name: TPR
+  title: 'Learning Transformation-Predictive Representations for Detection and Description of Local Features'
+  venue: CVPR
+  year: 2023
+  section: ldd-branched
+  paper: https://openaccess.thecvf.com/content/CVPR2023/html/Wang_Learning_Transformation-Predictive_Representations_for_Detection_and_Description_of_Local_Features_CVPR_2023_paper.html
+- name: D2Former
+  title: 'D2Former: Jointly Learning Hierarchical Detectors and Contextual Descriptors via Agent-Based Transformers'
+  venue: CVPR
+  year: 2023
+  section: ldd-branched
+  paper: https://openaccess.thecvf.com/content/CVPR2023/html/He_D2Former_Jointly_Learning_Hierarchical_Detectors_and_Contextual_Descriptors_via_Agent-Based_CVPR_2023_paper.html
+- name: HLDD
+  title: 'HLDD: Hierarchically Learned Detector and Descriptor for Robust Image Matching'
+  venue: TIP
+  year: 2025
+  section: ldd-branched
+  paper: https://doi.org/10.1109/tip.2025.3568310
+- name: RIPE
+  title: 'RIPE: Reinforcement Learning on Unlabeled Image Pairs for Robust Keypoint Extraction'
+  venue: ICCV
+  year: 2025
+  section: ldd-branched
+  paper: https://arxiv.org/abs/2507.04839
+  code: https://github.com/fraunhoferhhi/RIPE
+- name: SAMFeat
+  title: 'Segment Anything Model Is a Good Teacher for Local Feature Learning'
+  venue: TIP
+  year: 2025
+  section: ldd-branched
+  paper: https://arxiv.org/abs/2309.16992
+  code: https://github.com/vignywang/SAMFeat
+- name: SDE2D
+  title: 'SDE2D: Semantic-Guided Discriminability Enhancement Feature Detector and Descriptor'
+  venue: TMM
+  year: 2025
+  section: ldd-branched
+  paper: https://doi.org/10.1109/tmm.2024.3521748
+  code: https://github.com/Jasper-Lee2020/SDE2D
+- name: Wang et al.
+  title: 'Learning Local Features by Jointly Semantic-Guided and Task Rewards'
+  venue: TCSVT
+  year: 2025
+  section: ldd-branched
+  paper: https://doi.org/10.1109/tcsvt.2024.3490797
+- name: LARKED
+  title: 'LARKED: A Lightweight and Reliable Keypoint Detection Method for Feature Matching'
+  venue: CVIU
+  year: 2026
+  section: ldd-branched
+  paper: https://doi.org/10.1016/j.cviu.2026.104780
+- name: UPAL
+  title: 'Unified and Efficient Point-Line Local Features'
+  venue: ECCV
+  year: 2026
+  section: ldd-branched
+  paper: https://arxiv.org/abs/2608.19894
+  code: https://github.com/francois141/upal
+- name: PoSFeat
+  title: 'Decoupling Makes Weakly Supervised Local Feature Better'
+  venue: CVPR
+  year: 2022
+  section: ldd-decoupled
+  paper: https://arxiv.org/abs/2201.02861
+  code: https://github.com/SYSU-SAIL/PoSFeat
+- name: SCFeat
+  title: 'Shared Coupling-Bridge Scheme for Weakly Supervised Local Feature Learning'
+  venue: TMM
+  year: 2024
+  section: ldd-decoupled
+  paper: https://doi.org/10.1109/tmm.2023.3278172
+  code: https://github.com/sunjiayuanro/SCFeat
+- name: DeDoDe
+  title: 'DeDoDe: Detect, Don''t Describe -- Describe, Don''t Detect for Local Feature Matching'
+  venue: 3DV
+  year: 2024
+  section: ldd-decoupled
+  paper: https://arxiv.org/abs/2308.08479
+  code: https://github.com/Parskatt/DeDoDe
+  highlight: true
+- name: DeDoDe v2
+  title: 'DeDoDe V2: Analyzing and Improving the DeDoDe Keypoint Detector'
+  venue: CVPRW
+  year: 2024
+  section: ldd-decoupled
+  paper: https://arxiv.org/abs/2404.08928
+  code: https://github.com/Parskatt/DeDoDe
+- name: Steerers
+  title: 'Steerers: A Framework for Rotation Equivariant Keypoint Descriptors'
+  venue: CVPR
+  year: 2024
+  section: ldd-decoupled
+  paper: https://arxiv.org/abs/2312.02152
+  code: https://github.com/georg-bn/rotation-steerers
+- name: AffSteer
+  title: 'Affine Steerers for Structured Keypoint Description'
+  venue: ECCV
+  year: 2024
+  section: ldd-decoupled
+  paper: https://arxiv.org/abs/2408.14186
+  code: https://github.com/georg-bn/affine-steerers
+- name: XFeat
+  title: 'XFeat: Accelerated Features for Lightweight Image Matching'
+  venue: CVPR
+  year: 2024
+  section: ldd-decoupled
+  paper: https://arxiv.org/abs/2404.19174
+  code: https://github.com/verlab/accelerated_features
+  highlight: true
+- name: RDD
+  title: 'RDD: Robust Feature Detector and Descriptor using Deformable Transformer'
+  venue: CVPR
+  year: 2025
+  section: ldd-decoupled
+  paper: https://arxiv.org/abs/2505.08013
+  code: https://github.com/xtcpete/rdd
+- name: LiftFeat
+  title: 'LiftFeat: 3D Geometry-Aware Local Feature Matching'
+  venue: ICRA
+  year: 2025
+  section: ldd-decoupled
+  paper: https://arxiv.org/abs/2505.03422
+  code: https://github.com/lyp-deeplearning/LiftFeat
+- name: TraqPoint
+  title: 'From Pairs to Sequences: Track-Aware Policy Gradients for Keypoint Detection'
+  venue: CVPR
+  year: 2026
+  section: ldd-decoupled
+  paper: https://arxiv.org/abs/2602.20630
+  code: https://github.com/xiaomi-research/traqpoint
+  highlight: true
+- name: SemLight
+  title: 'SemLight: Distilled Semantic–Geometric Fusion for Efficient Local Feature Matching'
+  venue: ECCV
+  year: 2026
+  section: ldd-decoupled
+  paper: https://doi.org/10.1007/978-3-032-37592-6_26
+- name: Zhang and Rusinkiewicz
+  title: 'Learning to Detect Features in Texture Images'
+  venue: CVPR
+  year: 2018
+  section: ldd-application
+  paper: https://openaccess.thecvf.com/content_cvpr_2018/html/Zhang_Learning_to_Detect_CVPR_2018_paper.html
+  code: https://github.com/lg-zhang/pytorch-keypoint-release
+- name: SuperRetina
+  title: 'Semi-Supervised Keypoint Detector and Descriptor for Retinal Image Matching'
+  venue: ECCV
+  year: 2022
+  section: ldd-application
+  paper: https://arxiv.org/abs/2207.07932
+  code: https://github.com/ruc-aimc-lab/SuperRetina
+- name: DarkFeat
+  title: 'DarkFeat: Noise-Robust Feature Detector and Descriptor for Extremely Low-Light RAW Images'
+  venue: AAAI
+  year: 2023
+  section: ldd-application
+  paper: https://doi.org/10.1609/aaai.v37i1.25161
+  code: https://github.com/THU-LYJ-Lab/DarkFeat
+- name: Yang et al.
+  title: 'Knowledge Distillation for Feature Extraction in Underwater VSLAM'
+  venue: ICRA
+  year: 2023
+  section: ldd-application
+  paper: https://arxiv.org/abs/2303.17981
+  code: https://github.com/Jinghe-mel/UFEN-SLAM
+- name: Cadar et al.
+  title: 'Improving the Matching of Deformable Objects by Learning to Detect Keypoints'
+  venue: PRL
+  year: 2023
+  section: ldd-application
+  paper: https://arxiv.org/abs/2309.00434
+  code: https://github.com/verlab/LearningToDetect_PRL_2023
+- name: DALF
+  title: 'Enhancing Deformable Local Features by Jointly Learning to Detect and Describe Keypoints'
+  venue: CVPR
+  year: 2023
+  section: ldd-application
+  paper: https://arxiv.org/abs/2304.00583
+  code: https://github.com/verlab/DALF_CVPR_2023
+- name: Guo et al.
+  title: 'Descriptor Distillation for Efficient Multi-Robot SLAM'
+  venue: ICRA
+  year: 2023
+  section: ldd-application
+  paper: https://arxiv.org/abs/2303.08420
+- name: Liu et al.
+  title: 'Learning Task-Aligned Local Features for Visual Localization'
+  venue: RA-L
+  year: 2023
+  section: ldd-application
+  paper: https://doi.org/10.1109/lra.2023.3268015
+- name: BALF
+  title: 'BALF: Simple and Efficient Blur Aware Local Feature Detector'
+  venue: WACV
+  year: 2024
+  section: ldd-application
+  paper: https://arxiv.org/abs/2211.14731
+  code: https://github.com/ericzzj1989/BALF
+- name: Wang et al.
+  title: 'Degradation-Equivariant Representations for Robust Feature Detection and Description in Low-Light Environments'
+  venue: TMM
+  year: 2025
+  section: ldd-application
+  paper: https://doi.org/10.1109/tmm.2025.3599075
+- name: Motion-Feat
+  title: 'Motion-Feat: Motion Blur-Aware Local Feature Description for Image Matching'
+  venue: IROS
+  year: 2025
+  section: ldd-application
+  paper: https://doi.org/10.1109/iros60139.2025.11245810
+- name: GMM-IKRS
+  title: 'GMM-IKRS: Gaussian Mixture Models for Interpretable Keypoint Refinement and Scoring'
+  venue: ECCV
+  year: 2024
+  section: ldd-refinement
+  paper: https://arxiv.org/abs/2408.17149
+- name: Keypt2Subpx
+  title: 'Learning to Make Keypoints Sub-Pixel Accurate'
+  venue: ECCV
+  year: 2024
+  section: ldd-refinement
+  paper: https://arxiv.org/abs/2407.11668
+  code: https://github.com/KimSinjeong/keypt2subpx
+- name: XRefine
+  title: 'XRefine: Attention-Guided Keypoint Match Refinement'
+  venue: 3DV
+  year: 2026
+  section: ldd-refinement
+  paper: https://arxiv.org/abs/2601.12530
+  code: https://github.com/boschresearch/xrefine
+- name: PointCN
+  title: 'Learning to Find Good Correspondences'
+  venue: CVPR
+  year: 2018
+  section: of-context
+  paper: https://arxiv.org/abs/1711.05971
+  code: https://github.com/vcg-uvic/learned-correspondence-release
+  highlight: true
+- name: LMR
+  title: 'LMR: Learning a Two-Class Classifier for Mismatch Removal'
+  venue: TIP
+  year: 2019
+  section: of-context
+  paper: https://doi.org/10.1109/tip.2019.2906490
+  code: https://github.com/StaRainJ/LMR
+- name: OANet
+  title: 'Learning Two-View Correspondences and Geometry Using Order-Aware Network'
+  venue: ICCV
+  year: 2019
+  section: of-context
+  paper: https://arxiv.org/abs/1908.04964
+  code: https://github.com/zjhthu/OANet
+  highlight: true
+- name: NM-Net
+  title: 'NM-Net: Mining Reliable Neighbors for Robust Feature Correspondences'
+  venue: CVPR
+  year: 2019
+  section: of-context
+  paper: https://arxiv.org/abs/1904.00320
+  code: https://github.com/sailor-z/NM-Net
+- name: PointACN
+  title: 'ACNe: Attentive Context Normalization for Robust Permutation-Equivariant Learning'
+  venue: CVPR
+  year: 2020
+  section: of-context
+  paper: https://arxiv.org/abs/1907.02545
+  code: https://github.com/vcg-uvic/acne
+- name: CLNet
+  title: 'Progressive Correspondence Pruning by Consensus Learning'
+  venue: ICCV
+  year: 2021
+  section: of-context
+  paper: https://arxiv.org/abs/2101.00591
+  code: https://github.com/sailor-z/CLNet
+  highlight: true
+- name: MS²DG-Net
+  title: 'MS2DG-Net: Progressive Correspondence Learning via Multiple Sparse Semantics Dynamic Graph'
+  venue: CVPR
+  year: 2022
+  section: of-context
+  paper: https://openaccess.thecvf.com/content/CVPR2022/html/Dai_MS2DG-Net_Progressive_Correspondence_Learning_via_Multiple_Sparse_Semantics_Dynamic_Graph_CVPR_2022_paper.html
+  code: https://github.com/changcaiyang/MS2DG-Net
+- name: GANet
+  title: 'Learning for Mismatch Removal via Graph Attention Networks'
+  venue: ISPRS J
+  year: 2022
+  section: of-context
+  paper: https://doi.org/10.1016/j.isprsjprs.2022.06.009
+  code: https://github.com/StaRainJ/Code-of-GANet
+  highlight: true
+- name: OANet (TPAMI)
+  title: 'OANet: Learning Two-View Correspondences and Geometry Using Order-Aware Network'
+  venue: TPAMI
+  year: 2022
+  section: of-context
+  paper: https://doi.org/10.1109/tpami.2020.3048013
+  code: https://github.com/zjhthu/OANet
+- name: NCMNet
+  title: 'Progressive Neighbor Consistency Mining for Correspondence Pruning'
+  venue: CVPR
+  year: 2023
+  section: of-context
+  paper: https://openaccess.thecvf.com/content/CVPR2023/html/Liu_Progressive_Neighbor_Consistency_Mining_for_Correspondence_Pruning_CVPR_2023_paper.html
+  code: https://github.com/xinliu29/NCMNet
+  highlight: true
+- name: ANA-Net
+  title: 'Learning Second-Order Attentive Context for Efficient Correspondence Pruning'
+  venue: AAAI
+  year: 2023
+  section: of-context
+  paper: https://arxiv.org/abs/2303.15761
+  code: https://github.com/DIVE128/ANANet
+  highlight: true
+- name: U-Match
+  title: 'U-Match: Two-View Correspondence Learning with Hierarchy-Aware Local Context Aggregation'
+  venue: IJCAI
+  year: 2023
+  section: of-context
+  paper: https://doi.org/10.24963/ijcai.2023/130
+  code: https://github.com/ZizhuoLi/U-Match
+  highlight: true
+- name: T-Net++
+  title: 'T-Net++: Effective Permutation-Equivariance Network for Two-View Correspondence Pruning'
+  venue: TPAMI
+  year: 2024
+  section: of-context
+  paper: https://doi.org/10.1109/tpami.2024.3444457
+  code: https://github.com/guobaoxiao/T-Net
+- name: MGNet
+  title: 'MGNet: Learning Correspondences via Multiple Graphs'
+  venue: AAAI
+  year: 2024
+  section: of-context
+  paper: https://arxiv.org/abs/2401.04984
+- name: U-Match (TPAMI)
+  title: 'U-Match: Exploring Hierarchy-Aware Local Context for Two-View Correspondence Learning'
+  venue: TPAMI
+  year: 2024
+  section: of-context
+  paper: https://doi.org/10.1109/tpami.2024.3447048
+  code: https://github.com/ZizhuoLi/U-Match
+- name: BCLNet
+  title: 'BCLNet: Bilateral Consensus Learning for Two-View Correspondence Pruning'
+  venue: AAAI
+  year: 2024
+  section: of-context
+  paper: https://arxiv.org/abs/2401.03459
+  code: https://github.com/guobaoxiao/BCLNet
+- name: VSFormer
+  title: 'VSFormer: Visual-Spatial Fusion Transformer for Correspondence Pruning'
+  venue: AAAI
+  year: 2024
+  section: of-context
+  paper: https://arxiv.org/abs/2312.08774
+  code: https://github.com/sugar-fly/VSFormer
+  highlight: true
+- name: NCMNet (TPAMI)
+  title: 'NCMNet: Neighbor Consistency Mining Network for Two-View Correspondence Pruning'
+  venue: TPAMI
+  year: 2024
+  section: of-context
+  paper: https://doi.org/10.1109/tpami.2024.3462453
+  code: https://github.com/xinliu29/NCMNet
+- name: LeCoT
+  title: 'LeCoT: Revisiting Network Architecture for Two-View Correspondence Pruning'
+  venue: SCIS
+  year: 2026
+  section: of-context
+  paper: https://arxiv.org/abs/2511.07078
+  code: https://github.com/Dailuanyuan2024/LeCoT-Revisiting-Network-Architecture-for-Two-View-Correspondence-Pruning
+- name: CLCT
+  title: 'CLCT: Complementary Local Consensus Transformer for Two-View Correspondence Pruning'
+  venue: TMM
+  year: 2026
+  section: of-context
+  paper: https://doi.org/10.1109/tmm.2026.3687024
+- name: CorrMamba
+  title: 'Selecting and Pruning: A Differentiable Causal Sequentialized State-Space Model for Two-View Correspondence Learning'
+  venue: TIP
+  year: 2026
+  section: of-context
+  paper: https://arxiv.org/abs/2503.17938
+  highlight: true
+- name: Liao et al.
+  title: 'Scalable and Generalizable Correspondence Pruning via Geometry-Consistent Pre-Training'
+  venue: TPAMI
+  year: 2026
+  section: of-context
+  paper: https://arxiv.org/abs/2406.05773
+  code: https://github.com/sugar-fly/GeneralPruner
+- name: LMCNet
+  title: 'Learnable Motion Coherence for Correspondence Pruning'
+  venue: CVPR
+  year: 2021
+  section: of-coherence
+  paper: https://arxiv.org/abs/2011.14563
+  code: https://github.com/liuyuan-pal/LMCNet
+  highlight: true
+- name: ConvMatch
+  title: 'ConvMatch: Rethinking Network Design for Two-View Correspondence Learning'
+  venue: AAAI
+  year: 2023
+  section: of-coherence
+  paper: https://doi.org/10.1609/aaai.v37i3.25456
+  code: https://github.com/SuhZhang/ConvMatch
+  highlight: true
+- name: DeMatch
+  title: 'DeMatch: Deep Decomposition of Motion Field for Two-View Correspondence Learning'
+  venue: CVPR
+  year: 2024
+  section: of-coherence
+  paper: https://openaccess.thecvf.com/content/CVPR2024/html/Zhang_DeMatch_Deep_Decomposition_of_Motion_Field_for_Two-View_Correspondence_Learning_CVPR_2024_paper.html
+  code: https://github.com/SuhZhang/DeMatch
+  highlight: true
+- name: ConvMatch (TPAMI)
+  title: 'ConvMatch: Rethinking Network Design for Two-View Correspondence Learning'
+  venue: TPAMI
+  year: 2024
+  section: of-coherence
+  paper: https://doi.org/10.1109/tpami.2023.3334515
+  code: https://github.com/SuhZhang/ConvMatch
+- name: DeMo
+  title: 'DeMo: Deep Motion Field Consensus with Learnable Kernels for Two-View Correspondence Learning'
+  venue: AAAI
+  year: 2025
+  section: of-coherence
+  paper: https://doi.org/10.1609/aaai.v39i6.32622
+  code: https://github.com/JiajunLe/DeMo
+  highlight: true
+- name: DeMatch++
+  title: 'DeMatch++: Two-View Correspondence Learning via Deep Motion Field Decomposition and Respective Local-Context Aggregation'
+  venue: TPAMI
+  year: 2025
+  section: of-coherence
+  paper: https://doi.org/10.1109/tpami.2025.3596598
+  code: https://github.com/SuhZhang/DeMatchPlus
+- name: CorrNeXt
+  title: 'CorrNeXt: Making the ConvNet-Style Correspondence Pruner Stronger for Two-View Geometry'
+  venue: ACM MM
+  year: 2025
+  section: of-coherence
+  paper: https://doi.org/10.1145/3746027.3755350
+- name: SC-Net
+  title: 'SC-Net: Robust Correspondence Learning via Spatial and Cross-Channel Context'
+  venue: AAAI
+  year: 2026
+  section: of-coherence
+  paper: https://arxiv.org/abs/2512.23473
+  code: https://github.com/shuyuanlin/SCNet
+- name: GeoMoE
+  title: 'GeoMoE: Divide-and-Conquer Motion Field Modeling with Mixture-of-Experts for Two-View Geometry'
+  venue: AAAI
+  year: 2026
+  section: of-coherence
+  paper: https://arxiv.org/abs/2508.00592
+  code: https://github.com/JiajunLe/GeoMoE
+- name: DFM
+  title: 'Deep Fundamental Matrix Estimation'
+  venue: ECCV
+  year: 2018
+  section: ge-ls
+  paper: https://openaccess.thecvf.com/content_ECCV_2018/html/Rene_Ranftl_Deep_Fundamental_Matrix_ECCV_2018_paper.html
+  code: https://github.com/isl-org/DFE
+  highlight: true
+- name: NG-RANSAC
+  title: 'Neural-Guided RANSAC: Learning Where to Sample Model Hypotheses'
+  venue: ICCV
+  year: 2019
+  section: ge-sampling
+  paper: https://arxiv.org/abs/1905.04132
+  code: https://github.com/vislearn/ngransac
+  highlight: true
+- name: ARS-MAGSAC
+  title: 'Adaptive Reordering Sampler with Neurally Guided MAGSAC'
+  venue: ICCV
+  year: 2023
+  section: ge-sampling
+  paper: https://arxiv.org/abs/2111.14093
+  code: https://github.com/weitong8591/ars_magsac
+  highlight: true
+- name: BANSAC
+  title: 'BANSAC: A Dynamic BAyesian Network for Adaptive SAmple Consensus'
+  venue: ICCV
+  year: 2023
+  section: ge-sampling
+  paper: https://arxiv.org/abs/2309.08690
+  code: https://github.com/merlresearch/BANSAC
+- name: ∇-RANSAC
+  title: 'Generalized Differentiable RANSAC'
+  venue: ICCV
+  year: 2023
+  section: ge-sampling
+  paper: https://arxiv.org/abs/2212.13185
+  code: https://github.com/weitong8591/differentiable_ransac
+  highlight: true
+- name: MCD
+  title: 'Monte Carlo Diffusion for Generalizable Learning-Based RANSAC'
+  venue: AAAI
+  year: 2026
+  section: ge-sampling
+  paper: https://arxiv.org/abs/2503.09410
+  code: https://github.com/comedy0913/MCD
+  highlight: true
+- name: DSAC
+  title: 'DSAC - Differentiable RANSAC for Camera Localization'
+  venue: CVPR
+  year: 2017
+  section: ge-selection
+  paper: https://arxiv.org/abs/1611.05705
+  code: https://github.com/cvlab-dresden/DSAC
+- name: MQ-Net
+  title: 'Learning to Find Good Models in RANSAC'
+  venue: CVPR
+  year: 2022
+  section: ge-selection
+  paper: https://openaccess.thecvf.com/content/CVPR2022/html/Barath_Learning_To_Find_Good_Models_in_RANSAC_CVPR_2022_paper.html
+  code: https://github.com/danini/learning-good-models-in-ransac
+- name: NeFSAC
+  title: 'NeFSAC: Neurally Filtered Minimal Samples'
+  venue: ECCV
+  year: 2022
+  section: ge-selection
+  paper: https://arxiv.org/abs/2207.07872
+  code: https://github.com/cavalli1234/NeFSAC
+  highlight: true
+- name: FSNet
+  title: 'Two-View Geometry Scoring Without Correspondences'
+  venue: CVPR
+  year: 2023
+  section: ge-selection
+  paper: https://arxiv.org/abs/2306.01596
+  code: https://github.com/nianticlabs/scoring-without-correspondences
+  highlight: true
+- name: Probst et al.
+  title: 'Unsupervised Learning of Consensus Maximization for 3D Vision Problems'
+  venue: CVPR
+  year: 2019
+  section: ge-unsup
+  paper: https://openaccess.thecvf.com/content_CVPR_2019/html/Probst_Unsupervised_Learning_of_Consensus_Maximization_for_3D_Vision_Problems_CVPR_2019_paper.html
+- name: Truong et al.
+  title: 'Unsupervised Learning for Robust Fitting: A Reinforcement Learning Approach'
+  venue: CVPR
+  year: 2021
+  section: ge-unsup
+  paper: https://openaccess.thecvf.com/content/CVPR2021/html/Truong_Unsupervised_Learning_for_Robust_Fitting_A_Reinforcement_Learning_Approach_CVPR_2021_paper.html
+  code: https://github.com/hagianga21/MaxCon_RL
+- name: Truong et al. (TPAMI)
+  title: 'Unsupervised Learning for Maximum Consensus Robust Fitting: A Reinforcement Learning Approach'
+  venue: TPAMI
+  year: 2023
+  section: ge-unsup
+  paper: https://doi.org/10.1109/tpami.2022.3178442
+- name: RLSAC
+  title: 'RLSAC: Reinforcement Learning Enhanced Sample Consensus for End-to-End Robust Estimation'
+  venue: ICCV
+  year: 2023
+  section: ge-unsup
+  paper: https://arxiv.org/abs/2308.05318
+  code: https://github.com/IRMVLab/RLSAC
+  highlight: true
+- name: SuperGlue
+  title: 'SuperGlue: Learning Feature Matching with Graph Neural Networks'
+  venue: CVPR
+  year: 2020
+  section: sparse
+  paper: https://arxiv.org/abs/1911.11763
+  code: https://github.com/magicleap/SuperGluePretrainedNetwork
+  highlight: true
+- name: SGMNet
+  title: 'Learning to Match Features with Seeded Graph Matching Network'
+  venue: ICCV
+  year: 2021
+  section: sparse
+  paper: https://arxiv.org/abs/2108.08771
+  code: https://github.com/vdvchen/SGMNet
+  highlight: true
+- name: ClusterGNN
+  title: 'ClusterGNN: Cluster-Based Coarse-to-Fine Graph Neural Network for Efficient Feature Matching'
+  venue: CVPR
+  year: 2022
+  section: sparse
+  paper: https://arxiv.org/abs/2204.11700
+  highlight: true
+- name: ParaFormer
+  title: 'ParaFormer: Parallel Attention Transformer for Efficient Feature Matching'
+  venue: AAAI
+  year: 2023
+  section: sparse
+  paper: https://arxiv.org/abs/2303.00941
+- name: IMP
+  title: 'IMP: Iterative Matching and Pose Estimation with Adaptive Pooling'
+  venue: CVPR
+  year: 2023
+  section: sparse
+  paper: https://arxiv.org/abs/2304.14837
+  code: https://github.com/feixue94/imp-release
+  highlight: true
+- name: LightGlue
+  title: 'LightGlue: Local Feature Matching at Light Speed'
+  venue: ICCV
+  year: 2023
+  section: sparse
+  paper: https://arxiv.org/abs/2306.13643
+  code: https://github.com/cvg/LightGlue
+  highlight: true
+- name: SAM
+  title: 'Scene-Aware Feature Matching'
+  venue: ICCV
+  year: 2023
+  section: sparse
+  paper: https://arxiv.org/abs/2308.09949
+- name: OmniGlue
+  title: 'OmniGlue: Generalizable Feature Matching with Foundation Model Guidance'
+  venue: CVPR
+  year: 2024
+  section: sparse
+  paper: https://arxiv.org/abs/2405.12979
+  code: https://github.com/google-research/omniglue
+  highlight: true
+- name: ResMatch
+  title: 'ResMatch: Residual Attention Learning for Feature Matching'
+  venue: AAAI
+  year: 2024
+  section: sparse
+  paper: https://arxiv.org/abs/2307.05180
+  code: https://github.com/ACuOoOoO/ResMatch
+  highlight: true
+- name: DiffGlue
+  title: 'DiffGlue: Diffusion-Aided Image Feature Matching'
+  venue: ACM MM
+  year: 2024
+  section: sparse
+  paper: https://doi.org/10.1145/3664647.3681069
+  code: https://github.com/SuhZhang/DiffGlue
+  highlight: true
+- name: MaKeGNN
+  title: 'Learning Feature Matching via Matchable Keypoint-Assisted Graph Neural Network'
+  venue: TIP
+  year: 2025
+  section: sparse
+  paper: https://arxiv.org/abs/2307.01447
+- name: MambaGlue
+  title: 'MambaGlue: Fast and Robust Local Feature Matching With Mamba'
+  venue: ICRA
+  year: 2025
+  section: sparse
+  paper: https://arxiv.org/abs/2502.00462
+  code: https://github.com/url-kaist/MambaGlue
+  highlight: true
+- name: SemaGlue
+  title: 'Matching While Perceiving: Enhance Image Feature Matching with Applicable Semantic Amalgamation'
+  venue: AAAI
+  year: 2025
+  section: sparse
+  paper: https://doi.org/10.1609/aaai.v39i10.33095
+  code: https://github.com/ZeJ-Zhu/SemaGlue
+- name: MapGlue
+  title: 'MapGlue: Multimodal Remote Sensing Image Matching'
+  venue: ISPRS J
+  year: 2026
+  section: sparse
+  paper: https://arxiv.org/abs/2503.16185
+  code: https://github.com/PeihaoWu/MapGlue
+- name: SceneGlue
+  title: 'SceneGlue: Scene-Aware Transformer for Feature Matching without Scene-Level Annotation'
+  venue: TCSVT
+  year: 2026
+  section: sparse
+  paper: https://arxiv.org/abs/2604.13941
+  code: https://github.com/songlin-du/SceneGlue
+- name: CFM
+  title: 'Collaborative Feature Matching with Progressive Correspondence Learning'
+  venue: AAAI
+  year: 2026
+  section: sparse
+  paper: https://doi.org/10.1609/aaai.v40i9.37669
+  code: https://github.com/xinliu29/CFM
+- name: SGAT
+  title: 'SGAT: Learning Feature Matching with Singularity-Enhanced Graph Attention Network'
+  venue: AAAI
+  year: 2026
+  section: sparse
+  paper: https://doi.org/10.1609/aaai.v40i15.38294
+  code: https://github.com/tasi-z/SGAT
+- name: Match Any Keypoints
+  title: 'Match Any Keypoints'
+  venue: TIP
+  year: 2026
+  section: sparse
+  paper: https://doi.org/10.1109/tip.2026.3677666
+- name: LoMa
+  title: 'LoMa: Local Feature Matching Revisited'
+  venue: ECCV
+  year: 2026
+  section: sparse
+  paper: https://arxiv.org/abs/2604.04931
+  code: https://github.com/davnords/LoMa
+  highlight: true
+- name: NC-Net
+  title: 'Neighbourhood Consensus Networks'
+  venue: NeurIPS
+  year: 2018
+  section: semi-nc
+  paper: https://arxiv.org/abs/1810.10510
+  code: https://github.com/ignacio-rocco/ncnet
+  highlight: true
+- name: Sparse-NCNet
+  title: 'Efficient Neighbourhood Consensus Networks via Submanifold Sparse Convolutions'
+  venue: ECCV
+  year: 2020
+  section: semi-nc
+  paper: https://arxiv.org/abs/2004.10566
+  code: https://github.com/ignacio-rocco/sparse-ncnet
+  highlight: true
+- name: DualRC-Net
+  title: 'Dual-Resolution Correspondence Networks'
+  venue: NeurIPS
+  year: 2020
+  section: semi-nc
+  paper: https://arxiv.org/abs/2006.08844
+  code: https://github.com/ActiveVisionLab/DualRC-Net
+  highlight: true
+- name: Patch2Pix
+  title: 'Patch2Pix: Epipolar-Guided Pixel-Level Correspondences'
+  venue: CVPR
+  year: 2021
+  section: semi-nc
+  paper: https://arxiv.org/abs/2012.01909
+  code: https://github.com/GrumpyZhou/patch2pix
+- name: DualRC-L
+  title: 'DualRC: A Dual-Resolution Learning Framework With Neighbourhood Consensus for Visual Correspondences'
+  venue: TPAMI
+  year: 2024
+  section: semi-nc
+  paper: https://doi.org/10.1109/tpami.2023.3316770
+  code: https://github.com/ActiveVisionLab/DualRC-Net
+- name: EDCNet
+  title: 'Efficient Dynamic Correspondence Network'
+  venue: TIP
+  year: 2024
+  section: semi-nc
+  paper: https://doi.org/10.1109/tip.2023.3334594
+- name: LoFTR
+  title: 'LoFTR: Detector-Free Local Feature Matching with Transformers'
+  venue: CVPR
+  year: 2021
+  section: semi-comm
+  paper: https://arxiv.org/abs/2104.00680
+  code: https://github.com/zju3dv/LoFTR
+  highlight: true
+- name: MatchFormer
+  title: 'MatchFormer: Interleaving Attention in Transformers for Feature Matching'
+  venue: ACCV
+  year: 2022
+  section: semi-comm
+  paper: https://arxiv.org/abs/2203.09645
+  code: https://github.com/InSAI-Lab/MatchFormer
+- name: ASpanFormer
+  title: 'ASpanFormer: Detector-Free Image Matching with Adaptive Span Transformer'
+  venue: ECCV
+  year: 2022
+  section: semi-comm
+  paper: https://arxiv.org/abs/2208.14201
+  code: https://github.com/apple-aiml-research/ml-aspanformer
+  highlight: true
+- name: 3DG-STFM
+  title: '3DG-STFM: 3D Geometric Guided Student-Teacher Feature Matching'
+  venue: ECCV
+  year: 2022
+  section: semi-comm
+  paper: https://arxiv.org/abs/2207.02375
+  code: https://github.com/Ryan-prime/3DG-STFM
+- name: QuadTree
+  title: 'QuadTree Attention for Vision Transformers'
+  venue: ICLR
+  year: 2022
+  section: semi-comm
+  paper: https://arxiv.org/abs/2201.02767
+  code: https://github.com/Tangshitao/QuadTreeAttention
+  highlight: true
+- name: TopicFM
+  title: 'TopicFM: Robust and Interpretable Topic-Assisted Feature Matching'
+  venue: AAAI
+  year: 2023
+  section: semi-comm
+  paper: https://arxiv.org/abs/2207.00328
+  code: https://github.com/TruongKhang/TopicFM
+  highlight: true
+- name: CSE
+  title: 'Guiding Local Feature Matching with Surface Curvature'
+  venue: ICCV
+  year: 2023
+  section: semi-comm
+  paper: https://openaccess.thecvf.com/content/ICCV2023/html/Wang_Guiding_Local_Feature_Matching_with_Surface_Curvature_ICCV_2023_paper.html
+  code: https://github.com/AaltoVision/surface-curvature-estimator
+- name: SEM
+  title: 'Structured Epipolar Matcher for Local Feature Matching'
+  venue: CVPRW
+  year: 2023
+  section: semi-comm
+  paper: https://arxiv.org/abs/2303.16646
+  code: https://github.com/SEM2023/SEM
+- name: CasMTR
+  title: 'Improving Transformer-Based Image Matching by Cascaded Capturing Spatially Informative Keypoints'
+  venue: ICCV
+  year: 2023
+  section: semi-comm
+  paper: https://arxiv.org/abs/2303.02885
+  code: https://github.com/ewrfcas/CasMTR
+  highlight: true
+- name: AdaMatcher
+  title: 'Adaptive Assignment for Geometry Aware Local Feature Matching'
+  venue: CVPR
+  year: 2023
+  section: semi-comm
+  paper: https://arxiv.org/abs/2207.08427
+  code: https://github.com/TencentYoutuResearch/AdaMatcher
+  highlight: true
+- name: PATS
+  title: 'PATS: Patch Area Transportation with Subdivision for Local Feature Matching'
+  venue: CVPR
+  year: 2023
+  section: semi-comm
+  paper: https://arxiv.org/abs/2303.07700
+  code: https://github.com/zju3dv/pats
+- name: ASTR
+  title: 'Adaptive Spot-Guided Transformer for Consistent Local Feature Matching'
+  venue: CVPR
+  year: 2023
+  section: semi-comm
+  paper: https://arxiv.org/abs/2303.16624
+  code: https://github.com/ASTR2023/ASTR
+- name: AffineFormer
+  title: 'Affine-Based Deformable Attention and Selective Fusion for Semi-Dense Matching'
+  venue: CVPRW
+  year: 2024
+  section: semi-comm
+  paper: https://arxiv.org/abs/2405.13874
+  highlight: true
+- name: Efficient LoFTR
+  title: 'Efficient LoFTR: Semi-Dense Local Feature Matching with Sparse-Like Speed'
+  venue: CVPR
+  year: 2024
+  section: semi-comm
+  paper: https://arxiv.org/abs/2403.04765
+  code: https://github.com/zju3dv/EfficientLoFTR
+  highlight: true
+- name: MASt3R
+  title: 'Grounding Image Matching in 3D with MASt3R'
+  venue: ECCV
+  year: 2024
+  section: semi-comm
+  paper: https://arxiv.org/abs/2406.09756
+  code: https://github.com/naver/mast3r
+- name: TopicFM+
+  title: 'TopicFM+: Boosting Accuracy and Efficiency of Topic-Assisted Feature Matching'
+  venue: TIP
+  year: 2024
+  section: semi-comm
+  paper: https://arxiv.org/abs/2307.00485
+  code: https://github.com/TruongKhang/TopicFM
+- name: PRISM
+  title: 'PRISM: PRogressive Dependency maxImization for Scale-Invariant Image Matching'
+  venue: ACM MM
+  year: 2024
+  section: semi-comm
+  paper: https://arxiv.org/abs/2408.03598
+  highlight: true
+- name: EcoMatcher
+  title: 'EcoMatcher: Efficient Clustering Oriented Matcher for Detector-Free Image Matching'
+  venue: ECCV
+  year: 2024
+  section: semi-comm
+  paper: https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/8613_ECCV_2024_paper.php
+  highlight: true
+- name: ETO
+  title: 'ETO: Efficient Transformer-Based Local Feature Matching by Organizing Multiple Homography Hypotheses'
+  venue: NeurIPS
+  year: 2024
+  section: semi-comm
+  paper: https://proceedings.neurips.cc/paper_files/paper/2024/hash/6efa2dea10bd60e68c9a98b35a1099f3-Abstract-Conference.html
+  highlight: true
+- name: XoFTR
+  title: 'XoFTR: Cross-Modal Feature Matching Transformer'
+  venue: CVPRW
+  year: 2024
+  section: semi-comm
+  paper: https://arxiv.org/abs/2404.09692
+  code: https://github.com/OnderT/XoFTR
+- name: HomoMatcher
+  title: 'HomoMatcher: Achieving Dense Feature Matching with Semi-Dense Efficiency by Homography Estimation'
+  venue: AAAI
+  year: 2025
+  section: semi-comm
+  paper: https://arxiv.org/abs/2411.06700
+  highlight: true
+- name: JamMa
+  title: 'JamMa: Ultra-Lightweight Local Feature Matching with Joint Mamba'
+  venue: CVPR
+  year: 2025
+  section: semi-comm
+  paper: https://arxiv.org/abs/2503.03437
+  code: https://github.com/leoluxxx/JamMa
+  highlight: true
+- name: CoMatch
+  title: 'CoMatch: Dynamic Covisibility-Aware Transformer for Bilateral Subpixel-Level Semi-Dense Image Matching'
+  venue: ICCV
+  year: 2025
+  section: semi-comm
+  paper: https://arxiv.org/abs/2503.23925
+  code: https://github.com/ZizhuoLi/CoMatch
+  highlight: true
+- name: CasP
+  title: 'CasP: Improving Semi-Dense Feature Matching Pipeline Leveraging Cascaded Correspondence Priors for Guidance'
+  venue: ICCV
+  year: 2025
+  section: semi-comm
+  paper: https://arxiv.org/abs/2507.17312
+  code: https://github.com/pq-chen/CasP
+- name: EDM
+  title: 'EDM: Efficient Deep Feature Matching'
+  venue: ICCV
+  year: 2025
+  section: semi-comm
+  paper: https://arxiv.org/abs/2503.05122
+  code: https://github.com/chicleee/EDM
+- name: IMD
+  title: 'Mind the Gap: Aligning Vision Foundation Models to Image Feature Matching'
+  venue: ICCV
+  year: 2025
+  section: semi-comm
+  paper: https://arxiv.org/abs/2507.10318
+- name: ETO+
+  title: 'ETO+: Revisit the Refinement Stage in Efficient Feature Matching'
+  venue: IROS
+  year: 2025
+  section: semi-comm
+  paper: https://doi.org/10.1109/iros60139.2025.11246247
+- name: SigMa
+  title: 'SigMa: Semantic Similarity-Guided Semi-Dense Feature Matching'
+  venue: TIP
+  year: 2026
+  section: semi-comm
+  paper: https://doi.org/10.1109/tip.2026.3654367
+- name: TextFM
+  title: 'TextFM: Robust Semi-Dense Feature Matching with Language Guidance'
+  venue: CVPR
+  year: 2026
+  section: semi-comm
+  paper: https://openaccess.thecvf.com/content/CVPR2026/html/Zheng_TextFM_Robust_Semi-dense_Feature_Matching_with_Language_Guidance_CVPR_2026_paper.html
+- name: Jin et al.
+  title: 'Improving Local Feature Matching by Entropy-Inspired Scale Adaptability and Flow-Endowed Local Consistency'
+  venue: TCSVT
+  year: 2026
+  section: semi-comm
+  paper: https://arxiv.org/abs/2604.06713
+- name: PyraMatch
+  title: 'PyraMatch: Multi-Head Pyramid Scan for Mamba-Based Image Matching'
+  venue: ICASSP
+  year: 2026
+  section: semi-comm
+  paper: https://doi.org/10.1109/icassp55912.2026.11462943
+- name: Lu et al.
+  title: 'Progressive Matchability Guided Hybrid Interaction for Latency-Balanced Local Feature Matching'
+  venue: TMM
+  year: 2026
+  section: semi-comm
+  paper: https://doi.org/10.1109/tmm.2026.3723600
+- name: SLiM
+  title: 'Scalable Feature Matching via State Space Modeling and Sparse Correlation'
+  venue: CVPR
+  year: 2026
+  section: semi-comm
+  paper: https://openaccess.thecvf.com/content/CVPR2026/html/Choo_Scalable_Feature_Matching_via_State_Space_Modeling_and_Sparse_Correlation_CVPR_2026_paper.html
+  code: https://github.com/Band-127/SLiM
+- name: Toida and Hotta
+  title: 'Covisibility-Aware Token Pruning for Scalable Semi-Dense Image Matching'
+  venue: CVPRW
+  year: 2026
+  section: semi-comm
+  paper: https://openaccess.thecvf.com/content/CVPR2026W/IMW/html/Toida_Covisibility-Aware_Token_Pruning_for_Scalable_Semi-Dense_Image_Matching_CVPRW_2026_paper.html
+- name: UltraMatch
+  title: 'UltraMatch: Transport Path Routing for Ultra-Fast and Memory-Efficient Image Matching'
+  venue: arXiv
+  year: 2026
+  section: semi-comm
+  paper: https://arxiv.org/abs/2609.36980
+  code: https://github.com/JiajunLe/UltraMatch
+  highlight: true
+- name: SURE
+  title: 'SURE: Semi-Dense Uncertainty-REfined Feature Matching'
+  venue: ICRA
+  year: 2026
+  section: semi-comm
+  paper: https://arxiv.org/abs/2603.04869
+  code: https://github.com/LSC-ALAN/SURE
+- name: Detect by Track
+  title: 'Detect by Track: Making Detector-Free Matcher Trackable'
+  venue: ECCV
+  year: 2026
+  section: semi-comm
+  paper: https://doi.org/10.1007/978-3-032-37556-8_13
+  code: https://github.com/DensoITLab/DeT
+- name: MatchGS
+  title: 'Unlocking Zero-Shot Potential of Semi-Dense Image Matching via Gaussian Splatting'
+  venue: IROS
+  year: 2026
+  section: semi-comm
+  paper: https://arxiv.org/abs/2511.21265
+- name: FlowNet
+  title: 'FlowNet: Learning Optical Flow with Convolutional Networks'
+  venue: ICCV
+  year: 2015
+  section: dense-g2l
+  paper: https://arxiv.org/abs/1504.06852
+  code: https://github.com/lmb-freiburg/flownet2
+- name: Rocco et al.
+  title: 'Convolutional Neural Network Architecture for Geometric Matching'
+  venue: CVPR
+  year: 2017
+  section: dense-g2l
+  paper: https://arxiv.org/abs/1703.05593
+  code: https://github.com/ignacio-rocco/cnngeometric_pytorch
+- name: DGC-Net
+  title: 'DGC-Net: Dense Geometric Correspondence Network'
+  venue: WACV
+  year: 2019
+  section: dense-g2l
+  paper: https://arxiv.org/abs/1810.08393
+  code: https://github.com/AaltoVision/DGC-Net
+  highlight: true
+- name: GLU-Net
+  title: 'GLU-Net: Global-Local Universal Network for Dense Flow and Correspondences'
+  venue: CVPR
+  year: 2020
+  section: dense-g2l
+  paper: https://arxiv.org/abs/1912.05524
+  code: https://github.com/PruneTruong/GLU-Net
+- name: GOCor
+  title: 'GOCor: Bringing Globally Optimized Correspondence Volumes into Your Neural Network'
+  venue: NeurIPS
+  year: 2020
+  section: dense-g2l
+  paper: https://arxiv.org/abs/2009.07823
+  code: https://github.com/PruneTruong/GOCor
+  highlight: true
+- name: RANSAC-Flow
+  title: 'RANSAC-Flow: Generic Two-Stage Image Alignment'
+  venue: ECCV
+  year: 2020
+  section: dense-g2l
+  paper: https://arxiv.org/abs/2004.01526
+  code: https://github.com/XiSHEN0220/RANSAC-Flow
+- name: RAFT
+  title: 'RAFT: Recurrent All-Pairs Field Transforms for Optical Flow'
+  venue: ECCV
+  year: 2020
+  section: dense-g2l
+  paper: https://arxiv.org/abs/2003.12039
+  code: https://github.com/princeton-vl/RAFT
+- name: WarpC
+  title: 'Warp Consistency for Unsupervised Learning of Dense Correspondences'
+  venue: ICCV
+  year: 2021
+  section: dense-g2l
+  paper: https://arxiv.org/abs/2104.03308
+  code: https://github.com/PruneTruong/DenseMatching
+- name: PDC-Net
+  title: 'Learning Accurate Dense Correspondences and When to Trust Them'
+  venue: CVPR
+  year: 2021
+  section: dense-g2l
+  paper: https://arxiv.org/abs/2101.01710
+  code: https://github.com/PruneTruong/DenseMatching
+  highlight: true
+- name: GMFlow
+  title: 'GMFlow: Learning Optical Flow via Global Matching'
+  venue: CVPR
+  year: 2022
+  section: dense-g2l
+  paper: https://arxiv.org/abs/2111.13680
+  code: https://github.com/haofeixu/gmflow
+- name: PDC-Net+
+  title: 'PDC-Net+: Enhanced Probabilistic Dense Correspondence Network'
+  venue: TPAMI
+  year: 2023
+  section: dense-g2l
+  paper: https://arxiv.org/abs/2109.13912
+  code: https://github.com/PruneTruong/DenseMatching
+- name: DKM
+  title: 'DKM: Dense Kernelized Feature Matching for Geometry Estimation'
+  venue: CVPR
+  year: 2023
+  section: dense-g2l
+  paper: https://arxiv.org/abs/2202.00667
+  code: https://github.com/Parskatt/DKM
+  highlight: true
+- name: PMatch
+  title: 'PMatch: Paired Masked Image Modeling for Dense Geometric Matching'
+  venue: CVPR
+  year: 2023
+  section: dense-g2l
+  paper: https://arxiv.org/abs/2303.17342
+  code: https://github.com/ShngJZ/PMatch
+  highlight: true
+- name: UniMatch
+  title: 'Unifying Flow, Stereo and Depth Estimation'
+  venue: TPAMI
+  year: 2023
+  section: dense-g2l
+  paper: https://arxiv.org/abs/2211.05783
+  code: https://github.com/autonomousvision/unimatch
+- name: RoMa
+  title: 'RoMa: Robust Dense Feature Matching'
+  venue: CVPR
+  year: 2024
+  section: dense-g2l
+  paper: https://arxiv.org/abs/2305.15404
+  code: https://github.com/Parskatt/RoMa
+  highlight: true
+- name: DenseAffine
+  title: 'Learning Affine Correspondences by Integrating Geometric Constraints'
+  venue: CVPR
+  year: 2025
+  section: dense-g2l
+  paper: https://arxiv.org/abs/2504.04834
+  code: https://github.com/stilcrad/DenseAffine
+  highlight: true
+- name: Cai et al.
+  title: 'Evidential Learning-Based Certainty Estimation for Robust Dense Feature Matching'
+  venue: ICLR
+  year: 2025
+  section: dense-g2l
+  paper: https://openreview.net/forum?id=4NWtrQciRH
+- name: UFM
+  title: 'UFM: A Simple Path towards Unified Dense Correspondence with Flow'
+  venue: NeurIPS
+  year: 2025
+  section: dense-g2l
+  paper: https://arxiv.org/abs/2506.09278
+  code: https://github.com/UniFlowMatch/UFM
+- name: PanMatch
+  title: 'PanMatch: Unleashing the Potential of Large Vision Models for Unified Matching Models'
+  venue: arXiv
+  year: 2025
+  section: dense-g2l
+  paper: https://arxiv.org/abs/2507.08400
+  code: https://github.com/zhangyj85/PanMatch
+- name: ArgMatch
+  title: 'ArgMatch: Adaptive Refinement Gathering for Efficient Dense Matching'
+  venue: ICCV
+  year: 2025
+  section: dense-g2l
+  paper: https://openaccess.thecvf.com/content/ICCV2025/html/Deng_ArgMatch_Adaptive_Refinement_Gathering_for_Efficient_Dense_Matching_ICCV_2025_paper.html
+  code: https://github.com/ACuOoOoO/ArgMatch
+- name: DMS
+  title: 'Dense Match Summarization for Faster Two-View Estimation'
+  venue: CVPR
+  year: 2025
+  section: dense-g2l
+  paper: https://arxiv.org/abs/2506.02893
+  code: https://github.com/jastermark/DMS
+- name: RoMa v2
+  title: 'RoMa V2: Harder Better Faster Denser Feature Matching'
+  venue: ECCV
+  year: 2026
+  section: dense-g2l
+  paper: https://arxiv.org/abs/2511.15706
+  code: https://github.com/Parskatt/RoMaV2
+  highlight: true
+- name: RoMa-Ω
+  title: 'RoMa-Ω: What Feed-Forward 3D Models Know About Image Matching'
+  venue: arXiv
+  year: 2026
+  section: dense-g2l
+  paper: https://arxiv.org/abs/2609.09507
+  code: https://github.com/davnords/RoMa-Omega
+- name: SPIDER
+  title: 'SPIDER: Spatial Image CorresponDence Estimator for Robust Calibration'
+  venue: CVPR Findings
+  year: 2026
+  section: dense-g2l
+  paper: https://arxiv.org/abs/2511.17750
+  code: https://github.com/Zhimin00/spider
+- name: MV-RoMa
+  title: 'MV-RoMa: From Pairwise Matching into Multi-View Track Reconstruction'
+  venue: CVPR
+  year: 2026
+  section: dense-g2l
+  paper: https://arxiv.org/abs/2603.27542
+  code: https://github.com/IceTea-CV/MV-RoMa
+- name: REDI-Match
+  title: 'REDI-Match: Rotation-Equivariant Distillation for Efficient and Robust Dense Matching'
+  venue: arXiv
+  year: 2026
+  section: dense-g2l
+  paper: https://arxiv.org/abs/2606.24330
+  code: https://github.com/YinjiGe/REDI-Match
+- name: CRFT
+  title: 'CRFT: Consistent-Recurrent Feature Flow Transformer for Cross-Modal Image Registration'
+  venue: CVPR
+  year: 2026
+  section: dense-g2l
+  paper: https://arxiv.org/abs/2604.05689
+  code: https://github.com/NEU-Liuxuecong/CRFT
+- name: COTR
+  title: 'COTR: Correspondence Transformer for Matching Across Images'
+  venue: ICCV
+  year: 2021
+  section: dense-func
+  paper: https://arxiv.org/abs/2103.14167
+  code: https://github.com/ubc-vision/COTR
+  highlight: true
+- name: ECO-TR
+  title: 'ECO-TR: Efficient Correspondences Finding Via Coarse-to-Fine Refinement'
+  venue: ECCV
+  year: 2022
+  section: dense-func
+  paper: https://arxiv.org/abs/2209.12213
+  code: https://github.com/dltan7/ECO-TR
+- name: UniCorrn
+  title: 'UniCorrn: Unified Correspondence Transformer Across 2D and 3D'
+  venue: CVPR
+  year: 2026
+  section: dense-func
+  paper: https://arxiv.org/abs/2605.04044
+  code: https://github.com/neu-vi/UniCorrn
+- name: DHN
+  title: 'Deep Image Homography Estimation'
+  venue: arXiv
+  year: 2016
+  section: pr-dhe
+  paper: https://arxiv.org/abs/1606.03798
+  highlight: true
+- name: UDHN
+  title: 'Unsupervised Deep Homography: A Fast and Robust Homography Estimation Model'
+  venue: RA-L
+  year: 2018
+  section: pr-dhe
+  paper: https://arxiv.org/abs/1709.03966
+  code: https://github.com/tynguyen/unsupervisedDeepHomographyRAL2018
+- name: MHN
+  title: 'Deep Homography Estimation for Dynamic Scenes'
+  venue: CVPR
+  year: 2020
+  section: pr-dhe
+  paper: https://arxiv.org/abs/2004.02132
+  code: https://github.com/lcmhoang/hmg-dynamics
+- name: DeepLK
+  title: 'Deep Lucas-Kanade Homography for Multimodal Image Alignment'
+  venue: CVPR
+  year: 2021
+  section: pr-dhe
+  paper: https://arxiv.org/abs/2104.11693
+  code: https://github.com/placeforyiming/CVPR21-Deep-Lucas-Kanade-Homography
+  highlight: true
+- name: IHN
+  title: 'Iterative Deep Homography Estimation'
+  venue: CVPR
+  year: 2022
+  section: pr-dhe
+  paper: https://arxiv.org/abs/2203.15982
+  code: https://github.com/imdumpl78/IHN
+  highlight: true
+- name: CA-UDHN
+  title: 'Content-Aware Unsupervised Deep Homography Estimation and Its Extensions'
+  venue: TPAMI
+  year: 2023
+  section: pr-dhe
+  paper: https://doi.org/10.1109/tpami.2022.3174130
+  code: https://github.com/JirongZhang/DeepHomography
+- name: BasesHomo
+  title: 'Unsupervised Global and Local Homography Estimation With Motion Basis Learning'
+  venue: TPAMI
+  year: 2023
+  section: pr-dhe
+  paper: https://doi.org/10.1109/tpami.2022.3223789
+  code: https://github.com/megvii-research/BasesHomo
+- name: RHWF
+  title: 'Recurrent Homography Estimation Using Homography-Guided Image Warping and Focus Transformer'
+  venue: CVPR
+  year: 2023
+  section: pr-dhe
+  paper: https://openaccess.thecvf.com/content/CVPR2023/html/Cao_Recurrent_Homography_Estimation_Using_Homography-Guided_Image_Warping_and_Focus_Transformer_CVPR_2023_paper.html
+  code: https://github.com/imdumpl78/RHWF
+  highlight: true
+- name: SDME
+  title: 'Sparse-to-Dense Multimodal Image Registration via Multi-Task Learning'
+  venue: ICML
+  year: 2024
+  section: pr-dhe
+  paper: https://proceedings.mlr.press/v235/zhang24ar.html
+  code: https://github.com/KN-Zhang/SDME
+  highlight: true
+- name: DMHomo
+  title: 'DMHomo: Learning Homography with Diffusion Models'
+  venue: TOG
+  year: 2024
+  section: pr-dhe
+  paper: https://doi.org/10.1145/3652207
+  code: https://github.com/lhaippp/DMHomo
+- name: GFNet
+  title: 'Adapting Dense Matching for Homography Estimation with Grid-Based Acceleration'
+  venue: CVPR
+  year: 2025
+  section: pr-dhe
+  paper: https://openaccess.thecvf.com/content/CVPR2025/html/Zhang_Adapting_Dense_Matching_for_Homography_Estimation_with_Grid-based_Acceleration_CVPR_2025_paper.html
+  code: https://github.com/KN-Zhang/GFNet
+  highlight: true
+- name: HomoGAN
+  title: 'Unsupervised Global and Local Homography Estimation With Coplanarity-Aware GAN'
+  venue: TPAMI
+  year: 2025
+  section: pr-dhe
+  paper: https://doi.org/10.1109/tpami.2024.3509614
+  code: https://github.com/megvii-research/HomoGAN
+- name: SSHNet
+  title: 'SSHNet: Unsupervised Cross-Modal Homography Estimation via Problem Reformulation and Split Optimization'
+  venue: CVPR
+  year: 2025
+  section: pr-dhe
+  paper: https://arxiv.org/abs/2409.17993
+  code: https://github.com/Junchen-Yu/SSHNet
+- name: EDFFDNet
+  title: 'EDFFDNet: Towards Accurate and Efficient Unsupervised Multi-Grid Image Registration'
+  venue: ICCV
+  year: 2025
+  section: pr-dhe
+  paper: https://arxiv.org/abs/2509.07662
+- name: CamFlow
+  title: 'Estimating 2D Camera Motion with Hybrid Motion Basis'
+  venue: ICCV
+  year: 2025
+  section: pr-dhe
+  paper: https://arxiv.org/abs/2507.22480
+  code: https://github.com/lhaippp/CamFlow
+- name: Jiang et al.
+  title: 'Supervised Small-Baseline and Large-Baseline Homography Learning With Diffusion-Based Data Generation'
+  venue: TPAMI
+  year: 2026
+  section: pr-dhe
+  paper: https://doi.org/10.1109/tpami.2026.3669995
+  code: https://github.com/JianghaiSCU/RealSH
+- name: HomoDiff
+  title: 'HomoDiff: Noise-Robust Multi-Modal Homography Estimation via Diffusion Model'
+  venue: TPAMI
+  year: 2026
+  section: pr-dhe
+  paper: https://doi.org/10.1109/tpami.2026.3730469
+  code: https://github.com/Langweng/HomoDiff
+  highlight: true
+- name: You et al.
+  title: 'Towards Generalized Multimodal Homography Estimation'
+  venue: CVPR
+  year: 2026
+  section: pr-dhe
+  paper: https://arxiv.org/abs/2603.03956
+- name: Liu et al.
+  title: 'Toward Reliable Homography Estimation under Adverse Degradations: An Optimization-Driven Approach'
+  venue: TPAMI
+  year: 2026
+  section: pr-dhe
+  paper: https://doi.org/10.1109/tpami.2026.3720245
+- name: Melekhov et al.
+  title: 'Relative Camera Pose Estimation Using Convolutional Neural Networks'
+  venue: ACIVS
+  year: 2017
+  section: pr-rt
+  paper: https://arxiv.org/abs/1702.01381
+  code: https://github.com/AaltoVision/relativeCameraPose
+  highlight: true
+- name: RPNet
+  title: 'RPNet: An End-to-End Network for Relative Camera Pose Estimation'
+  venue: ECCVW
+  year: 2018
+  section: pr-rt
+  paper: https://arxiv.org/abs/1809.08402
+  code: https://github.com/ensv/RPNet
+  highlight: true
+- name: Zhou et al.
+  title: 'On the Continuity of Rotation Representations in Neural Networks'
+  venue: CVPR
+  year: 2019
+  section: pr-rt
+  paper: https://arxiv.org/abs/1812.07035
+  code: https://github.com/papagina/RotationContinuity
+- name: Levinson et al.
+  title: 'An Analysis of SVD for Deep Rotation Estimation'
+  venue: NeurIPS
+  year: 2020
+  section: pr-rt
+  paper: https://arxiv.org/abs/2006.14616
+  code: https://github.com/google-research/google-research/tree/master/special_orthogonalization
+- name: DirectionNet
+  title: 'Wide-Baseline Relative Camera Pose Estimation with Directional Learning'
+  venue: CVPR
+  year: 2021
+  section: pr-rt
+  paper: https://arxiv.org/abs/2106.03336
+  code: https://github.com/arthurchen0518/DirectionNet
+  highlight: true
+- name: DenseCorrVol
+  title: 'Extreme Rotation Estimation using Dense Correlation Volumes'
+  venue: CVPR
+  year: 2021
+  section: pr-rt
+  paper: https://arxiv.org/abs/2104.13530
+  code: https://github.com/RuojinCai/ExtremeRotation_code
+- name: Map-free
+  title: 'Map-Free Visual Relocalization: Metric Pose Relative to a Single Image'
+  venue: ECCV
+  year: 2022
+  section: pr-rt
+  paper: https://arxiv.org/abs/2210.05494
+  code: https://github.com/nianticlabs/map-free-reloc
+  highlight: true
+- name: SRPose
+  title: 'SRPose: Two-View Relative Pose Estimation with Sparse Keypoints'
+  venue: ECCV
+  year: 2024
+  section: pr-rt
+  paper: https://arxiv.org/abs/2407.08199
+  code: https://github.com/frickyinn/SRPose
+  highlight: true
+- name: Reloc3r
+  title: 'Reloc3r: Large-Scale Training of Relative Camera Pose Regression for Generalizable, Fast, and Accurate Visual Localization'
+  venue: CVPR
+  year: 2025
+  section: pr-rt
+  paper: https://arxiv.org/abs/2412.08376
+  code: https://github.com/ffrivera0/reloc3r
+- name: Alligat0R
+  title: 'Alligat0R: Pre-Training Through Co-Visibility Segmentation for Relative Camera Pose Regression'
+  venue: NeurIPS
+  year: 2025
+  section: pr-rt
+  paper: https://arxiv.org/abs/2503.07561
+  code: https://github.com/thibautloiseau/alligat0r
+- name: EquiPose
+  title: 'EquiPose: Exploiting Permutation Equivariance for Relative Camera Pose Estimation'
+  venue: CVPR
+  year: 2025
+  section: pr-rt
+  paper: https://openaccess.thecvf.com/content/CVPR2025/html/Liu_EquiPose_Exploiting_Permutation_Equivariance_for_Relative_Camera_Pose_Estimation_CVPR_2025_paper.html
+  code: https://github.com/liuyuzhenn/EquiPose
+- name: Bezalel et al.
+  title: 'Extreme Rotation Estimation in the Wild'
+  venue: CVPR
+  year: 2025
+  section: pr-rt
+  paper: https://arxiv.org/abs/2411.07096
+  code: https://github.com/TAU-VAILab/ExtremeRotationsInTheWild
+- name: Poursaeed et al.
+  title: 'Deep Fundamental Matrix Estimation without Correspondences'
+  venue: ECCVW
+  year: 2018
+  section: pr-fe
+  paper: https://arxiv.org/abs/1810.01575
+  code: https://drive.google.com/file/d/1vcvzmZ0diUS0tpt20_TDwQ-Tl3XgG41m/view?usp=sharing
+  highlight: true
+- name: Zhou et al.
+  title: 'To Learn or Not to Learn: Visual Localization from Essential Matrices'
+  venue: ICRA
+  year: 2020
+  section: pr-fe
+  paper: https://arxiv.org/abs/1908.01293
+  code: https://github.com/GrumpyZhou/visloc-relapose
+  highlight: true
+- name: SUN3D
+  title: 'SUN3D: A Database of Big Spaces Reconstructed Using SfM and Object Labels'
+  venue: ICCV
+  year: 2013
+  section: datasets
+  paper: https://openaccess.thecvf.com/content_iccv_2013/html/Xiao_SUN3D_A_Database_2013_ICCV_paper.html
+- name: WxBS
+  title: 'WxBS: Wide Baseline Stereo Generalizations'
+  venue: BMVC
+  year: 2015
+  section: datasets
+  paper: https://arxiv.org/abs/1504.06603
+- name: YFCC100M
+  title: 'YFCC100M: The New Data in Multimedia Research'
+  venue: Commun. ACM
+  year: 2016
+  section: datasets
+  paper: https://arxiv.org/abs/1503.01817
+- name: HPatches
+  title: 'HPatches: A Benchmark and Evaluation of Handcrafted and Learned Local Descriptors'
+  venue: CVPR
+  year: 2017
+  section: datasets
+  paper: https://arxiv.org/abs/1704.05939
+  code: https://github.com/hpatches/hpatches-dataset
+- name: ScanNet
+  title: 'ScanNet: Richly-Annotated 3D Reconstructions of Indoor Scenes'
+  venue: CVPR
+  year: 2017
+  section: datasets
+  paper: https://arxiv.org/abs/1702.04405
+  code: https://github.com/ScanNet/ScanNet
+- name: ETH3D
+  title: 'A Multi-View Stereo Benchmark with High-Resolution Images and Multi-Camera Videos'
+  venue: CVPR
+  year: 2017
+  section: datasets
+  paper: https://openaccess.thecvf.com/content_cvpr_2017/html/Schops_A_Multi-View_Stereo_CVPR_2017_paper.html
+  code: https://github.com/ETH3D/dataset-pipeline
+- name: MegaDepth
+  title: 'MegaDepth: Learning Single-View Depth Prediction from Internet Photos'
+  venue: CVPR
+  year: 2018
+  section: datasets
+  paper: https://arxiv.org/abs/1804.00607
+  code: https://github.com/zhengqili/MegaDepth
+- name: Aachen Day-Night
+  title: 'Benchmarking 6DOF Outdoor Visual Localization in Changing Conditions'
+  venue: CVPR
+  year: 2018
+  section: datasets
+  paper: https://arxiv.org/abs/1707.09092
+  code: https://github.com/tsattler/visuallocalizationbenchmark
+- name: InLoc
+  title: 'InLoc: Indoor Visual Localization with Dense Matching and View Synthesis'
+  venue: CVPR
+  year: 2018
+  section: datasets
+  paper: https://arxiv.org/abs/1803.10368
+  code: https://github.com/HajimeTaira/InLoc_demo
+- name: IMC
+  title: 'Image Matching Across Wide Baselines: From Paper to Practice'
+  venue: IJCV
+  year: 2021
+  section: datasets
+  paper: https://arxiv.org/abs/2003.01587
+  code: https://github.com/ubc-vision/image-matching-benchmark
+- name: Brachmann et al.
+  title: 'On the Limits of Pseudo Ground Truth in Visual Camera Re-Localisation'
+  venue: ICCV
+  year: 2021
+  section: datasets
+  paper: https://arxiv.org/abs/2109.00524
+  code: https://github.com/tsattler/visloc_pseudo_gt_limitations
+- name: LaMAR
+  title: 'LaMAR: Benchmarking Localization and Mapping for Augmented Reality'
+  venue: ECCV
+  year: 2022
+  section: datasets
+  paper: https://arxiv.org/abs/2210.10770
+  code: https://github.com/microsoft/lamar-benchmark
+- name: HEB
+  title: 'A Large Scale Homography Benchmark'
+  venue: CVPR
+  year: 2023
+  section: datasets
+  paper: https://arxiv.org/abs/2302.09997
+  code: https://github.com/danini/homography-benchmark
+- name: RUBIK
+  title: 'RUBIK: A Structured Benchmark for Image Matching Across Geometric Challenges'
+  venue: CVPR
+  year: 2025
+  section: datasets
+  paper: https://arxiv.org/abs/2502.19955
+  code: https://github.com/thibautloiseau/RUBIK
+- name: AerialMegaDepth
+  title: 'AerialMegaDepth: Learning Aerial-Ground Reconstruction and View Synthesis'
+  venue: CVPR
+  year: 2025
+  section: datasets
+  paper: https://arxiv.org/abs/2504.13157
+  code: https://github.com/kvuong2711/aerial-megadepth
+- name: AerialExtreMatch
+  title: 'AerialExtreMatch: A Benchmark for Extreme-View Image Matching and Localization'
+  venue: RA-L
+  year: 2026
+  section: datasets
+  paper: https://doi.org/10.1109/lra.2026.3673915
+  code: https://github.com/Xecades/AerialExtreMatch
+- name: AirZoo
+  title: 'AirZoo: A Unified Large-Scale Dataset for Grounding Aerial Geometric 3D Vision'
+  venue: ECCV
+  year: 2026
+  section: datasets
+  paper: https://arxiv.org/abs/2604.26567
+  code: https://github.com/nudt-sawlab/AirZoo
+- name: COLMAP (SfM)
+  title: 'Structure-from-Motion Revisited'
+  venue: CVPR
+  year: 2016
+  section: tools
+  paper: https://openaccess.thecvf.com/content_cvpr_2016/html/Schonberger_Structure-From-Motion_Revisited_CVPR_2016_paper.html
+  code: https://github.com/colmap/colmap
+- name: COLMAP (MVS)
+  title: 'Pixelwise View Selection for Unstructured Multi-View Stereo'
+  venue: ECCV
+  year: 2016
+  section: tools
+  paper: https://doi.org/10.1007/978-3-319-46487-9_31
+  code: https://github.com/colmap/colmap
+- name: NetVLAD
+  title: 'NetVLAD: CNN Architecture for Weakly Supervised Place Recognition'
+  venue: CVPR
+  year: 2016
+  section: tools
+  paper: https://arxiv.org/abs/1511.07247
+  code: https://github.com/Relja/netvlad
+- name: HLoc
+  title: 'From Coarse to Fine: Robust Hierarchical Localization at Large Scale'
+  venue: CVPR
+  year: 2019
+  section: tools
+  paper: https://arxiv.org/abs/1812.03506
+  code: https://github.com/cvg/Hierarchical-Localization
+- name: PixSfM
+  title: 'Pixel-Perfect Structure-from-Motion with Featuremetric Refinement'
+  venue: ICCV
+  year: 2021
+  section: tools
+  paper: https://arxiv.org/abs/2108.08291
+  code: https://github.com/cvg/pixel-perfect-sfm
+- name: GLOMAP
+  title: 'Global Structure-from-Motion Revisited'
+  venue: ECCV
+  year: 2024
+  section: tools
+  paper: https://arxiv.org/abs/2407.20219
+  code: https://github.com/colmap/glomap
+- name: GIM
+  title: 'GIM: Learning Generalizable Image Matcher From Internet Videos'
+  venue: ICLR
+  year: 2024
+  section: ft-generalization
+  paper: https://arxiv.org/abs/2402.11095
+  code: https://github.com/xuelunshen/gim
+- name: L2M
+  title: 'Learning Dense Feature Matching via Lifting Single 2D Image to 3D Space'
+  venue: ICCV
+  year: 2025
+  section: ft-generalization
+  paper: https://arxiv.org/abs/2507.00392
+  code: https://github.com/Sharpiless/L2M
+- name: Hoang et al.
+  title: 'Semi-Dense Matching Uncertainty Is Not Just Local Confidence'
+  venue: arXiv
+  year: 2026
+  section: ft-uncertainty
+  paper: https://arxiv.org/abs/2608.08685
+  code: https://github.com/khoavpt/Probabilistic-matching
+- name: OETR
+  title: 'Guide Local Feature Matching by Overlap Estimation'
+  venue: AAAI
+  year: 2022
+  section: ft-efficiency
+  paper: https://arxiv.org/abs/2202.09050
+  code: https://github.com/TencentYoutuResearch/ImageMatching-OETR
+- name: MESA
+  title: 'MESA: Matching Everything by Segmenting Anything'
+  venue: CVPR
+  year: 2024
+  section: ft-efficiency
+  paper: https://arxiv.org/abs/2401.16741
+  code: https://github.com/Easonyesheng/A2PM-MESA
+- name: SGAD
+  title: 'SGAD: Semantic and Geometric-Aware Descriptor for Local Feature Matching'
+  venue: ICCV
+  year: 2025
+  section: ft-efficiency
+  paper: https://arxiv.org/abs/2508.02278
+  code: https://github.com/mr-chiwang/SGAD
+- name: MESA (TPAMI)
+  title: 'MESA: Effective Matching Redundancy Reduction by Semantic Area Segmentation'
+  venue: TPAMI
+  year: 2026
+  section: ft-efficiency
+  paper: https://arxiv.org/abs/2408.00279
+  code: https://github.com/Easonyesheng/A2PM-MESA
+- name: A2PM
+  title: 'Searching from Area to Point: A Semantic Guided Framework with Geometric Consistency for Accurate Feature Matching'
+  venue: PR
+  year: 2026
+  section: ft-efficiency
+  paper: https://doi.org/10.1016/j.patcog.2026.113920
+  code: https://github.com/Easonyesheng/A2PM-MESA
+- name: LoFTR (TPAMI)
+  title: 'Semi-Dense Feature Matching With Transformers and Its Applications in Multiple-View Geometry'
+  venue: TPAMI
+  year: 2023
+  section: ft-multiview
+  paper: https://doi.org/10.1109/tpami.2022.3223530
+  code: https://github.com/zju3dv/LoFTR
+- name: CroCo v2
+  title: 'CroCo V2: Improved Cross-View Completion Pre-Training for Stereo Matching and Optical Flow'
+  venue: ICCV
+  year: 2023
+  section: ft-lgm
+  paper: https://arxiv.org/abs/2211.10408
+  code: https://github.com/naver/croco
+- name: DUSt3R
+  title: 'DUSt3R: Geometric 3D Vision Made Easy'
+  venue: CVPR
+  year: 2024
+  section: ft-lgm
+  paper: https://arxiv.org/abs/2312.14132
+  code: https://github.com/naver/dust3r
+- name: VGGT
+  title: 'VGGT: Visual Geometry Grounded Transformer'
+  venue: CVPR
+  year: 2025
+  section: ft-lgm
+  paper: https://arxiv.org/abs/2503.11651
+  code: https://github.com/facebookresearch/vggt
+- name: ZeroCo
+  title: 'Cross-View Completion Models Are Zero-Shot Correspondence Estimators'
+  venue: CVPR
+  year: 2025
+  section: ft-lgm
+  paper: https://arxiv.org/abs/2412.09072
+  code: https://github.com/cvlab-kaist/ZeroCo
+- name: MADPose
+  title: 'Relative Pose Estimation through Affine Corrections of Monocular Depth Priors'
+  venue: CVPR
+  year: 2025
+  section: ft-lgm
+  paper: https://arxiv.org/abs/2501.05446
+  code: https://github.com/MarkYu98/madpose
+- name: RePoseD
+  title: 'RePoseD: Efficient Relative Pose Estimation With Known Depth Information'
+  venue: ICCV
+  year: 2025
+  section: ft-lgm
+  paper: https://arxiv.org/abs/2501.07742
+  code: https://github.com/kocurvik/mdrp
+- name: π³
+  title: 'π³: Permutation-Equivariant Visual Geometry Learning'
+  venue: ICLR
+  year: 2026
+  section: ft-lgm
+  paper: https://arxiv.org/abs/2507.13347
+  code: https://github.com/yyfz/Pi3
+- name: Depth Anything 3
+  title: 'Depth Anything 3: Recovering the Visual Space from Any Views'
+  venue: ICLR
+  year: 2026
+  section: ft-lgm
+  paper: https://arxiv.org/abs/2511.10647
+  code: https://github.com/ByteDance-Seed/Depth-Anything-3
+- name: MuM
+  title: 'MuM: Multi-View Masked Image Modeling for 3D Vision'
+  venue: CVPR
+  year: 2026
+  section: ft-lgm
+  paper: https://arxiv.org/abs/2511.17309
+  code: https://github.com/davnords/MuM
+- name: DGC-GNN
+  title: 'DGC-GNN: Leveraging Geometry and Color Cues for Visual Descriptor-Free 2D-3D Matching'
+  venue: CVPR
+  year: 2024
+  section: ft-multimodal
+  paper: https://arxiv.org/abs/2306.12547
+  code: https://github.com/AaltoVision/DGC-GNN-release
+- name: MINIMA
+  title: 'MINIMA: Modality Invariant Image Matching'
+  venue: CVPR
+  year: 2025
+  section: ft-multimodal
+  paper: https://arxiv.org/abs/2412.19412
+  code: https://github.com/LSXI7/MINIMA
+- name: Shrivastava and Owens
+  title: 'Self-Supervised Spatial Correspondence Across Modalities'
+  venue: CVPR
+  year: 2025
+  section: ft-multimodal
+  paper: https://arxiv.org/abs/2506.03148
+  code: https://github.com/ayshrv/cmrw
+- name: MatchAnything
+  title: 'Multiple Modalities Image Matching With Large-Scale Pre-Training'
+  venue: TPAMI
+  year: 2026
+  section: ft-multimodal
+  paper: https://doi.org/10.1109/tpami.2026.3724652
+  code: https://github.com/zju3dv/MatchAnything
+- name: PYM
+  title: 'Patch Your Matcher: Correspondence-Aware Image-to-Image Translation Unlocks Cross-Modal Matching via Single-Modality Priors'
+  venue: WACV
+  year: 2026
+  section: ft-multimodal
+  paper: https://openaccess.thecvf.com/content/WACV2026/html/Frolov_Patch_Your_Matcher_Correspondence-Aware_Image-to-Image_Translation_Unlocks_Cross-Modal_Matching_via_WACV_2026_paper.html
+  code: https://github.com/xaf-cv/patch-your-matcher
+- name: AnyMatch
+  title: 'AnyMatch: Supercharging Universal Multi-Modal Image Matching with Large-Scale Single-View Images'
+  venue: ECCV
+  year: 2026
+  section: ft-multimodal
+  paper: https://arxiv.org/abs/2606.31077
+  code: https://github.com/MnYangs/AnyMatch
