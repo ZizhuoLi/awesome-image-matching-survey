@@ -1,8 +1,7 @@
 # Source of the paper list in README.md. Edit this file, then run: python scripts/build_readme.py
 #
 # sections: README structure in display order. Papers attach to a section through its `id`.
-# papers:   name, title, venue, year, section are required; paper (link), code (official repo) and
-#           highlight (representative method in the survey timeline) are optional.
+# papers:   name, title, venue, year, section are required; paper (link) and code (official repo) are optional.
 sections:
 - id: classical
   level: 2
@@ -462,7 +461,6 @@ papers:
   year: 2006
   section: ldd-detector
   paper: https://doi.org/10.1007/11744023_34
-  highlight: true
 - name: Kienzle et al.
   title: 'Learning an Interest Operator from Human Eye Movements'
   venue: CVPRW
@@ -547,7 +545,7 @@ papers:
   section: ldd-detector
   paper: https://arxiv.org/abs/2204.08613
   code: https://github.com/bluedream1121/REKD
-- name: Key.Net (TPAMI)
+- name: Key.Net
   title: 'Key.Net: Keypoint Detection by Handcrafted and Learned CNN Filters Revisited'
   venue: TPAMI
   year: 2023
@@ -582,14 +580,12 @@ papers:
   section: ldd-detector
   paper: https://arxiv.org/abs/2602.15755
   code: https://github.com/cvg/RaCo
-  highlight: true
 - name: PCA-SIFT
   title: 'PCA-SIFT: A More Distinctive Representation for Local Image Descriptors'
   venue: CVPR
   year: 2004
   section: ldd-descriptor
   paper: https://doi.org/10.1109/cvpr.2004.1315206
-  highlight: true
 - name: Hua et al.
   title: 'Discriminant Embedding for Local Image Descriptors'
   venue: ICCV
@@ -639,7 +635,6 @@ papers:
   section: ldd-descriptor
   paper: https://arxiv.org/abs/1504.03641
   code: https://github.com/szagoruyko/cvpr15deepcompare
-  highlight: true
 - name: MatchNet
   title: 'MatchNet: Unifying Feature and Metric Learning for Patch-Based Matching'
   venue: CVPR
@@ -647,7 +642,6 @@ papers:
   section: ldd-descriptor
   paper: https://openaccess.thecvf.com/content_cvpr_2015/html/Han_MatchNet_Unifying_Feature_2015_CVPR_paper.html
   code: https://github.com/hanxf/matchnet
-  highlight: true
 - name: DeepDesc
   title: 'Discriminative Learning of Deep Convolutional Feature Point Descriptors'
   venue: ICCV
@@ -655,7 +649,6 @@ papers:
   section: ldd-descriptor
   paper: https://openaccess.thecvf.com/content_iccv_2015/html/Simo-Serra_Discriminative_Learning_of_ICCV_2015_paper.html
   code: https://github.com/etrulls/deepdesc-release
-  highlight: true
 - name: TFeat
   title: 'Learning Local Feature Descriptors with Triplets and Shallow Convolutional Neural Networks'
   venue: BMVC
@@ -684,7 +677,6 @@ papers:
   section: ldd-descriptor
   paper: https://openaccess.thecvf.com/content_cvpr_2017/html/Tian_L2-Net_Deep_Learning_CVPR_2017_paper.html
   code: https://github.com/yuruntian/L2-Net
-  highlight: true
 - name: HardNet
   title: 'Working Hard to Know Your Neighbor''s Margins: Local Descriptor Learning Loss'
   venue: NeurIPS
@@ -768,7 +760,6 @@ papers:
   section: ldd-descriptor
   paper: https://arxiv.org/abs/2004.13324
   code: https://github.com/qianqianwang68/caps
-  highlight: true
 - name: Toft et al.
   title: 'Single-Image Depth Prediction Makes Feature Matching Easier'
   venue: ECCV
@@ -866,7 +857,6 @@ papers:
   section: ldd-cascaded
   paper: https://arxiv.org/abs/1603.09114
   code: https://github.com/cvlab-epfl/LIFT
-  highlight: true
 - name: LF-Net
   title: 'LF-Net: Learning Local Features from Images'
   venue: NeurIPS
@@ -874,7 +864,6 @@ papers:
   section: ldd-cascaded
   paper: https://arxiv.org/abs/1805.09662
   code: https://github.com/vcg-uvic/lf-net-release
-  highlight: true
 - name: RF-Net
   title: 'RF-Net: An End-to-End Image Matching Network Based on Receptive Field'
   venue: CVPR
@@ -923,7 +912,6 @@ papers:
   section: ldd-branched
   paper: https://arxiv.org/abs/1712.07629
   code: https://github.com/magicleap/SuperPointPretrainedNetwork
-  highlight: true
 - name: UnsuperPoint
   title: 'UnsuperPoint: End-to-End Unsupervised Interest Point Detector and Descriptor'
   venue: arXiv
@@ -937,7 +925,6 @@ papers:
   section: ldd-branched
   paper: https://arxiv.org/abs/1906.06195
   code: https://github.com/naver/r2d2
-  highlight: true
 - name: KP2D
   title: 'Neural Outlier Rejection for Self-Supervised Keypoint Learning'
   venue: ICLR
@@ -966,7 +953,6 @@ papers:
   section: ldd-branched
   paper: https://arxiv.org/abs/2006.13566
   code: https://github.com/cvlab-epfl/disk
-  highlight: true
 - name: RaP-Net
   title: 'RaP-Net: A Region-Wise and Point-Wise Weighting Network to Extract Robust Features for Indoor Localization'
   venue: IROS
@@ -1002,7 +988,6 @@ papers:
   section: ldd-branched
   paper: https://arxiv.org/abs/2304.03608
   code: https://github.com/Shiaoming/ALIKED
-  highlight: true
 - name: SiLK
   title: 'SiLK -- Simple Learned Keypoints'
   venue: ICCV
@@ -1103,7 +1088,6 @@ papers:
   section: ldd-decoupled
   paper: https://arxiv.org/abs/2308.08479
   code: https://github.com/Parskatt/DeDoDe
-  highlight: true
 - name: DeDoDe v2
   title: 'DeDoDe V2: Analyzing and Improving the DeDoDe Keypoint Detector'
   venue: CVPRW
@@ -1132,7 +1116,6 @@ papers:
   section: ldd-decoupled
   paper: https://arxiv.org/abs/2404.19174
   code: https://github.com/verlab/accelerated_features
-  highlight: true
 - name: RDD
   title: 'RDD: Robust Feature Detector and Descriptor using Deformable Transformer'
   venue: CVPR
@@ -1154,7 +1137,6 @@ papers:
   section: ldd-decoupled
   paper: https://arxiv.org/abs/2602.20630
   code: https://github.com/xiaomi-research/traqpoint
-  highlight: true
 - name: SemLight
   title: 'SemLight: Distilled Semantic–Geometric Fusion for Efficient Local Feature Matching'
   venue: ECCV
@@ -1261,7 +1243,6 @@ papers:
   section: of-context
   paper: https://arxiv.org/abs/1711.05971
   code: https://github.com/vcg-uvic/learned-correspondence-release
-  highlight: true
 - name: LMR
   title: 'LMR: Learning a Two-Class Classifier for Mismatch Removal'
   venue: TIP
@@ -1276,7 +1257,6 @@ papers:
   section: of-context
   paper: https://arxiv.org/abs/1908.04964
   code: https://github.com/zjhthu/OANet
-  highlight: true
 - name: NM-Net
   title: 'NM-Net: Mining Reliable Neighbors for Robust Feature Correspondences'
   venue: CVPR
@@ -1298,7 +1278,6 @@ papers:
   section: of-context
   paper: https://arxiv.org/abs/2101.00591
   code: https://github.com/sailor-z/CLNet
-  highlight: true
 - name: MS²DG-Net
   title: 'MS2DG-Net: Progressive Correspondence Learning via Multiple Sparse Semantics Dynamic Graph'
   venue: CVPR
@@ -1313,8 +1292,7 @@ papers:
   section: of-context
   paper: https://doi.org/10.1016/j.isprsjprs.2022.06.009
   code: https://github.com/StaRainJ/Code-of-GANet
-  highlight: true
-- name: OANet (TPAMI)
+- name: OANet
   title: 'OANet: Learning Two-View Correspondences and Geometry Using Order-Aware Network'
   venue: TPAMI
   year: 2022
@@ -1328,7 +1306,6 @@ papers:
   section: of-context
   paper: https://openaccess.thecvf.com/content/CVPR2023/html/Liu_Progressive_Neighbor_Consistency_Mining_for_Correspondence_Pruning_CVPR_2023_paper.html
   code: https://github.com/xinliu29/NCMNet
-  highlight: true
 - name: ANA-Net
   title: 'Learning Second-Order Attentive Context for Efficient Correspondence Pruning'
   venue: AAAI
@@ -1336,7 +1313,6 @@ papers:
   section: of-context
   paper: https://arxiv.org/abs/2303.15761
   code: https://github.com/DIVE128/ANANet
-  highlight: true
 - name: U-Match
   title: 'U-Match: Two-View Correspondence Learning with Hierarchy-Aware Local Context Aggregation'
   venue: IJCAI
@@ -1344,7 +1320,6 @@ papers:
   section: of-context
   paper: https://doi.org/10.24963/ijcai.2023/130
   code: https://github.com/ZizhuoLi/U-Match
-  highlight: true
 - name: T-Net++
   title: 'T-Net++: Effective Permutation-Equivariance Network for Two-View Correspondence Pruning'
   venue: TPAMI
@@ -1358,7 +1333,7 @@ papers:
   year: 2024
   section: of-context
   paper: https://arxiv.org/abs/2401.04984
-- name: U-Match (TPAMI)
+- name: U-Match
   title: 'U-Match: Exploring Hierarchy-Aware Local Context for Two-View Correspondence Learning'
   venue: TPAMI
   year: 2024
@@ -1379,8 +1354,7 @@ papers:
   section: of-context
   paper: https://arxiv.org/abs/2312.08774
   code: https://github.com/sugar-fly/VSFormer
-  highlight: true
-- name: NCMNet (TPAMI)
+- name: NCMNet
   title: 'NCMNet: Neighbor Consistency Mining Network for Two-View Correspondence Pruning'
   venue: TPAMI
   year: 2024
@@ -1406,7 +1380,6 @@ papers:
   year: 2026
   section: of-context
   paper: https://arxiv.org/abs/2503.17938
-  highlight: true
 - name: Liao et al.
   title: 'Scalable and Generalizable Correspondence Pruning via Geometry-Consistent Pre-Training'
   venue: TPAMI
@@ -1421,7 +1394,6 @@ papers:
   section: of-coherence
   paper: https://arxiv.org/abs/2011.14563
   code: https://github.com/liuyuan-pal/LMCNet
-  highlight: true
 - name: ConvMatch
   title: 'ConvMatch: Rethinking Network Design for Two-View Correspondence Learning'
   venue: AAAI
@@ -1429,7 +1401,6 @@ papers:
   section: of-coherence
   paper: https://doi.org/10.1609/aaai.v37i3.25456
   code: https://github.com/SuhZhang/ConvMatch
-  highlight: true
 - name: DeMatch
   title: 'DeMatch: Deep Decomposition of Motion Field for Two-View Correspondence Learning'
   venue: CVPR
@@ -1437,8 +1408,7 @@ papers:
   section: of-coherence
   paper: https://openaccess.thecvf.com/content/CVPR2024/html/Zhang_DeMatch_Deep_Decomposition_of_Motion_Field_for_Two-View_Correspondence_Learning_CVPR_2024_paper.html
   code: https://github.com/SuhZhang/DeMatch
-  highlight: true
-- name: ConvMatch (TPAMI)
+- name: ConvMatch
   title: 'ConvMatch: Rethinking Network Design for Two-View Correspondence Learning'
   venue: TPAMI
   year: 2024
@@ -1452,7 +1422,6 @@ papers:
   section: of-coherence
   paper: https://doi.org/10.1609/aaai.v39i6.32622
   code: https://github.com/JiajunLe/DeMo
-  highlight: true
 - name: DeMatch++
   title: 'DeMatch++: Two-View Correspondence Learning via Deep Motion Field Decomposition and Respective Local-Context Aggregation'
   venue: TPAMI
@@ -1487,7 +1456,6 @@ papers:
   section: ge-ls
   paper: https://openaccess.thecvf.com/content_ECCV_2018/html/Rene_Ranftl_Deep_Fundamental_Matrix_ECCV_2018_paper.html
   code: https://github.com/isl-org/DFE
-  highlight: true
 - name: NG-RANSAC
   title: 'Neural-Guided RANSAC: Learning Where to Sample Model Hypotheses'
   venue: ICCV
@@ -1495,7 +1463,6 @@ papers:
   section: ge-sampling
   paper: https://arxiv.org/abs/1905.04132
   code: https://github.com/vislearn/ngransac
-  highlight: true
 - name: ARS-MAGSAC
   title: 'Adaptive Reordering Sampler with Neurally Guided MAGSAC'
   venue: ICCV
@@ -1503,7 +1470,6 @@ papers:
   section: ge-sampling
   paper: https://arxiv.org/abs/2111.14093
   code: https://github.com/weitong8591/ars_magsac
-  highlight: true
 - name: BANSAC
   title: 'BANSAC: A Dynamic BAyesian Network for Adaptive SAmple Consensus'
   venue: ICCV
@@ -1518,7 +1484,6 @@ papers:
   section: ge-sampling
   paper: https://arxiv.org/abs/2212.13185
   code: https://github.com/weitong8591/differentiable_ransac
-  highlight: true
 - name: MCD
   title: 'Monte Carlo Diffusion for Generalizable Learning-Based RANSAC'
   venue: AAAI
@@ -1526,7 +1491,6 @@ papers:
   section: ge-sampling
   paper: https://arxiv.org/abs/2503.09410
   code: https://github.com/comedy0913/MCD
-  highlight: true
 - name: DSAC
   title: 'DSAC - Differentiable RANSAC for Camera Localization'
   venue: CVPR
@@ -1548,7 +1512,6 @@ papers:
   section: ge-selection
   paper: https://arxiv.org/abs/2207.07872
   code: https://github.com/cavalli1234/NeFSAC
-  highlight: true
 - name: FSNet
   title: 'Two-View Geometry Scoring Without Correspondences'
   venue: CVPR
@@ -1556,7 +1519,6 @@ papers:
   section: ge-selection
   paper: https://arxiv.org/abs/2306.01596
   code: https://github.com/nianticlabs/scoring-without-correspondences
-  highlight: true
 - name: Probst et al.
   title: 'Unsupervised Learning of Consensus Maximization for 3D Vision Problems'
   venue: CVPR
@@ -1570,7 +1532,7 @@ papers:
   section: ge-unsup
   paper: https://openaccess.thecvf.com/content/CVPR2021/html/Truong_Unsupervised_Learning_for_Robust_Fitting_A_Reinforcement_Learning_Approach_CVPR_2021_paper.html
   code: https://github.com/hagianga21/MaxCon_RL
-- name: Truong et al. (TPAMI)
+- name: Truong et al.
   title: 'Unsupervised Learning for Maximum Consensus Robust Fitting: A Reinforcement Learning Approach'
   venue: TPAMI
   year: 2023
@@ -1583,7 +1545,6 @@ papers:
   section: ge-unsup
   paper: https://arxiv.org/abs/2308.05318
   code: https://github.com/IRMVLab/RLSAC
-  highlight: true
 - name: SuperGlue
   title: 'SuperGlue: Learning Feature Matching with Graph Neural Networks'
   venue: CVPR
@@ -1591,7 +1552,6 @@ papers:
   section: sparse
   paper: https://arxiv.org/abs/1911.11763
   code: https://github.com/magicleap/SuperGluePretrainedNetwork
-  highlight: true
 - name: SGMNet
   title: 'Learning to Match Features with Seeded Graph Matching Network'
   venue: ICCV
@@ -1599,14 +1559,12 @@ papers:
   section: sparse
   paper: https://arxiv.org/abs/2108.08771
   code: https://github.com/vdvchen/SGMNet
-  highlight: true
 - name: ClusterGNN
   title: 'ClusterGNN: Cluster-Based Coarse-to-Fine Graph Neural Network for Efficient Feature Matching'
   venue: CVPR
   year: 2022
   section: sparse
   paper: https://arxiv.org/abs/2204.11700
-  highlight: true
 - name: ParaFormer
   title: 'ParaFormer: Parallel Attention Transformer for Efficient Feature Matching'
   venue: AAAI
@@ -1620,7 +1578,6 @@ papers:
   section: sparse
   paper: https://arxiv.org/abs/2304.14837
   code: https://github.com/feixue94/imp-release
-  highlight: true
 - name: LightGlue
   title: 'LightGlue: Local Feature Matching at Light Speed'
   venue: ICCV
@@ -1628,7 +1585,6 @@ papers:
   section: sparse
   paper: https://arxiv.org/abs/2306.13643
   code: https://github.com/cvg/LightGlue
-  highlight: true
 - name: SAM
   title: 'Scene-Aware Feature Matching'
   venue: ICCV
@@ -1642,7 +1598,6 @@ papers:
   section: sparse
   paper: https://arxiv.org/abs/2405.12979
   code: https://github.com/google-research/omniglue
-  highlight: true
 - name: ResMatch
   title: 'ResMatch: Residual Attention Learning for Feature Matching'
   venue: AAAI
@@ -1650,7 +1605,6 @@ papers:
   section: sparse
   paper: https://arxiv.org/abs/2307.05180
   code: https://github.com/ACuOoOoO/ResMatch
-  highlight: true
 - name: DiffGlue
   title: 'DiffGlue: Diffusion-Aided Image Feature Matching'
   venue: ACM MM
@@ -1658,7 +1612,6 @@ papers:
   section: sparse
   paper: https://doi.org/10.1145/3664647.3681069
   code: https://github.com/SuhZhang/DiffGlue
-  highlight: true
 - name: MaKeGNN
   title: 'Learning Feature Matching via Matchable Keypoint-Assisted Graph Neural Network'
   venue: TIP
@@ -1672,7 +1625,6 @@ papers:
   section: sparse
   paper: https://arxiv.org/abs/2502.00462
   code: https://github.com/url-kaist/MambaGlue
-  highlight: true
 - name: SemaGlue
   title: 'Matching While Perceiving: Enhance Image Feature Matching with Applicable Semantic Amalgamation'
   venue: AAAI
@@ -1721,7 +1673,6 @@ papers:
   section: sparse
   paper: https://arxiv.org/abs/2604.04931
   code: https://github.com/davnords/LoMa
-  highlight: true
 - name: NC-Net
   title: 'Neighbourhood Consensus Networks'
   venue: NeurIPS
@@ -1729,7 +1680,6 @@ papers:
   section: semi-nc
   paper: https://arxiv.org/abs/1810.10510
   code: https://github.com/ignacio-rocco/ncnet
-  highlight: true
 - name: Sparse-NCNet
   title: 'Efficient Neighbourhood Consensus Networks via Submanifold Sparse Convolutions'
   venue: ECCV
@@ -1737,7 +1687,6 @@ papers:
   section: semi-nc
   paper: https://arxiv.org/abs/2004.10566
   code: https://github.com/ignacio-rocco/sparse-ncnet
-  highlight: true
 - name: DualRC-Net
   title: 'Dual-Resolution Correspondence Networks'
   venue: NeurIPS
@@ -1745,7 +1694,6 @@ papers:
   section: semi-nc
   paper: https://arxiv.org/abs/2006.08844
   code: https://github.com/ActiveVisionLab/DualRC-Net
-  highlight: true
 - name: Patch2Pix
   title: 'Patch2Pix: Epipolar-Guided Pixel-Level Correspondences'
   venue: CVPR
@@ -1773,7 +1721,6 @@ papers:
   section: semi-comm
   paper: https://arxiv.org/abs/2104.00680
   code: https://github.com/zju3dv/LoFTR
-  highlight: true
 - name: MatchFormer
   title: 'MatchFormer: Interleaving Attention in Transformers for Feature Matching'
   venue: ACCV
@@ -1788,7 +1735,6 @@ papers:
   section: semi-comm
   paper: https://arxiv.org/abs/2208.14201
   code: https://github.com/apple-aiml-research/ml-aspanformer
-  highlight: true
 - name: 3DG-STFM
   title: '3DG-STFM: 3D Geometric Guided Student-Teacher Feature Matching'
   venue: ECCV
@@ -1803,7 +1749,6 @@ papers:
   section: semi-comm
   paper: https://arxiv.org/abs/2201.02767
   code: https://github.com/Tangshitao/QuadTreeAttention
-  highlight: true
 - name: TopicFM
   title: 'TopicFM: Robust and Interpretable Topic-Assisted Feature Matching'
   venue: AAAI
@@ -1811,7 +1756,6 @@ papers:
   section: semi-comm
   paper: https://arxiv.org/abs/2207.00328
   code: https://github.com/TruongKhang/TopicFM
-  highlight: true
 - name: CSE
   title: 'Guiding Local Feature Matching with Surface Curvature'
   venue: ICCV
@@ -1833,7 +1777,6 @@ papers:
   section: semi-comm
   paper: https://arxiv.org/abs/2303.02885
   code: https://github.com/ewrfcas/CasMTR
-  highlight: true
 - name: AdaMatcher
   title: 'Adaptive Assignment for Geometry Aware Local Feature Matching'
   venue: CVPR
@@ -1841,7 +1784,6 @@ papers:
   section: semi-comm
   paper: https://arxiv.org/abs/2207.08427
   code: https://github.com/TencentYoutuResearch/AdaMatcher
-  highlight: true
 - name: PATS
   title: 'PATS: Patch Area Transportation with Subdivision for Local Feature Matching'
   venue: CVPR
@@ -1862,7 +1804,6 @@ papers:
   year: 2024
   section: semi-comm
   paper: https://arxiv.org/abs/2405.13874
-  highlight: true
 - name: Efficient LoFTR
   title: 'Efficient LoFTR: Semi-Dense Local Feature Matching with Sparse-Like Speed'
   venue: CVPR
@@ -1870,7 +1811,6 @@ papers:
   section: semi-comm
   paper: https://arxiv.org/abs/2403.04765
   code: https://github.com/zju3dv/EfficientLoFTR
-  highlight: true
 - name: MASt3R
   title: 'Grounding Image Matching in 3D with MASt3R'
   venue: ECCV
@@ -1891,21 +1831,18 @@ papers:
   year: 2024
   section: semi-comm
   paper: https://arxiv.org/abs/2408.03598
-  highlight: true
 - name: EcoMatcher
   title: 'EcoMatcher: Efficient Clustering Oriented Matcher for Detector-Free Image Matching'
   venue: ECCV
   year: 2024
   section: semi-comm
   paper: https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/8613_ECCV_2024_paper.php
-  highlight: true
 - name: ETO
   title: 'ETO: Efficient Transformer-Based Local Feature Matching by Organizing Multiple Homography Hypotheses'
   venue: NeurIPS
   year: 2024
   section: semi-comm
   paper: https://proceedings.neurips.cc/paper_files/paper/2024/hash/6efa2dea10bd60e68c9a98b35a1099f3-Abstract-Conference.html
-  highlight: true
 - name: XoFTR
   title: 'XoFTR: Cross-Modal Feature Matching Transformer'
   venue: CVPRW
@@ -1919,7 +1856,6 @@ papers:
   year: 2025
   section: semi-comm
   paper: https://arxiv.org/abs/2411.06700
-  highlight: true
 - name: JamMa
   title: 'JamMa: Ultra-Lightweight Local Feature Matching with Joint Mamba'
   venue: CVPR
@@ -1927,7 +1863,6 @@ papers:
   section: semi-comm
   paper: https://arxiv.org/abs/2503.03437
   code: https://github.com/leoluxxx/JamMa
-  highlight: true
 - name: CoMatch
   title: 'CoMatch: Dynamic Covisibility-Aware Transformer for Bilateral Subpixel-Level Semi-Dense Image Matching'
   venue: ICCV
@@ -1935,7 +1870,6 @@ papers:
   section: semi-comm
   paper: https://arxiv.org/abs/2503.23925
   code: https://github.com/ZizhuoLi/CoMatch
-  highlight: true
 - name: CasP
   title: 'CasP: Improving Semi-Dense Feature Matching Pipeline Leveraging Cascaded Correspondence Priors for Guidance'
   venue: ICCV
@@ -2012,7 +1946,6 @@ papers:
   section: semi-comm
   paper: https://arxiv.org/abs/2609.36980
   code: https://github.com/JiajunLe/UltraMatch
-  highlight: true
 - name: SURE
   title: 'SURE: Semi-Dense Uncertainty-REfined Feature Matching'
   venue: ICRA
@@ -2054,7 +1987,6 @@ papers:
   section: dense-g2l
   paper: https://arxiv.org/abs/1810.08393
   code: https://github.com/AaltoVision/DGC-Net
-  highlight: true
 - name: GLU-Net
   title: 'GLU-Net: Global-Local Universal Network for Dense Flow and Correspondences'
   venue: CVPR
@@ -2069,7 +2001,6 @@ papers:
   section: dense-g2l
   paper: https://arxiv.org/abs/2009.07823
   code: https://github.com/PruneTruong/GOCor
-  highlight: true
 - name: RANSAC-Flow
   title: 'RANSAC-Flow: Generic Two-Stage Image Alignment'
   venue: ECCV
@@ -2098,7 +2029,6 @@ papers:
   section: dense-g2l
   paper: https://arxiv.org/abs/2101.01710
   code: https://github.com/PruneTruong/DenseMatching
-  highlight: true
 - name: GMFlow
   title: 'GMFlow: Learning Optical Flow via Global Matching'
   venue: CVPR
@@ -2120,7 +2050,6 @@ papers:
   section: dense-g2l
   paper: https://arxiv.org/abs/2202.00667
   code: https://github.com/Parskatt/DKM
-  highlight: true
 - name: PMatch
   title: 'PMatch: Paired Masked Image Modeling for Dense Geometric Matching'
   venue: CVPR
@@ -2128,7 +2057,6 @@ papers:
   section: dense-g2l
   paper: https://arxiv.org/abs/2303.17342
   code: https://github.com/ShngJZ/PMatch
-  highlight: true
 - name: UniMatch
   title: 'Unifying Flow, Stereo and Depth Estimation'
   venue: TPAMI
@@ -2143,7 +2071,6 @@ papers:
   section: dense-g2l
   paper: https://arxiv.org/abs/2305.15404
   code: https://github.com/Parskatt/RoMa
-  highlight: true
 - name: DenseAffine
   title: 'Learning Affine Correspondences by Integrating Geometric Constraints'
   venue: CVPR
@@ -2151,7 +2078,6 @@ papers:
   section: dense-g2l
   paper: https://arxiv.org/abs/2504.04834
   code: https://github.com/stilcrad/DenseAffine
-  highlight: true
 - name: Cai et al.
   title: 'Evidential Learning-Based Certainty Estimation for Robust Dense Feature Matching'
   venue: ICLR
@@ -2193,7 +2119,6 @@ papers:
   section: dense-g2l
   paper: https://arxiv.org/abs/2511.15706
   code: https://github.com/Parskatt/RoMaV2
-  highlight: true
 - name: RoMa-Ω
   title: 'RoMa-Ω: What Feed-Forward 3D Models Know About Image Matching'
   venue: arXiv
@@ -2236,7 +2161,6 @@ papers:
   section: dense-func
   paper: https://arxiv.org/abs/2103.14167
   code: https://github.com/ubc-vision/COTR
-  highlight: true
 - name: ECO-TR
   title: 'ECO-TR: Efficient Correspondences Finding Via Coarse-to-Fine Refinement'
   venue: ECCV
@@ -2257,7 +2181,6 @@ papers:
   year: 2016
   section: pr-dhe
   paper: https://arxiv.org/abs/1606.03798
-  highlight: true
 - name: UDHN
   title: 'Unsupervised Deep Homography: A Fast and Robust Homography Estimation Model'
   venue: RA-L
@@ -2279,7 +2202,6 @@ papers:
   section: pr-dhe
   paper: https://arxiv.org/abs/2104.11693
   code: https://github.com/placeforyiming/CVPR21-Deep-Lucas-Kanade-Homography
-  highlight: true
 - name: IHN
   title: 'Iterative Deep Homography Estimation'
   venue: CVPR
@@ -2287,7 +2209,6 @@ papers:
   section: pr-dhe
   paper: https://arxiv.org/abs/2203.15982
   code: https://github.com/imdumpl78/IHN
-  highlight: true
 - name: CA-UDHN
   title: 'Content-Aware Unsupervised Deep Homography Estimation and Its Extensions'
   venue: TPAMI
@@ -2309,7 +2230,6 @@ papers:
   section: pr-dhe
   paper: https://openaccess.thecvf.com/content/CVPR2023/html/Cao_Recurrent_Homography_Estimation_Using_Homography-Guided_Image_Warping_and_Focus_Transformer_CVPR_2023_paper.html
   code: https://github.com/imdumpl78/RHWF
-  highlight: true
 - name: SDME
   title: 'Sparse-to-Dense Multimodal Image Registration via Multi-Task Learning'
   venue: ICML
@@ -2317,7 +2237,6 @@ papers:
   section: pr-dhe
   paper: https://proceedings.mlr.press/v235/zhang24ar.html
   code: https://github.com/KN-Zhang/SDME
-  highlight: true
 - name: DMHomo
   title: 'DMHomo: Learning Homography with Diffusion Models'
   venue: TOG
@@ -2332,7 +2251,6 @@ papers:
   section: pr-dhe
   paper: https://openaccess.thecvf.com/content/CVPR2025/html/Zhang_Adapting_Dense_Matching_for_Homography_Estimation_with_Grid-based_Acceleration_CVPR_2025_paper.html
   code: https://github.com/KN-Zhang/GFNet
-  highlight: true
 - name: HomoGAN
   title: 'Unsupervised Global and Local Homography Estimation With Coplanarity-Aware GAN'
   venue: TPAMI
@@ -2374,7 +2292,6 @@ papers:
   section: pr-dhe
   paper: https://doi.org/10.1109/tpami.2026.3730469
   code: https://github.com/Langweng/HomoDiff
-  highlight: true
 - name: You et al.
   title: 'Towards Generalized Multimodal Homography Estimation'
   venue: CVPR
@@ -2394,7 +2311,6 @@ papers:
   section: pr-rt
   paper: https://arxiv.org/abs/1702.01381
   code: https://github.com/AaltoVision/relativeCameraPose
-  highlight: true
 - name: RPNet
   title: 'RPNet: An End-to-End Network for Relative Camera Pose Estimation'
   venue: ECCVW
@@ -2402,7 +2318,6 @@ papers:
   section: pr-rt
   paper: https://arxiv.org/abs/1809.08402
   code: https://github.com/ensv/RPNet
-  highlight: true
 - name: Zhou et al.
   title: 'On the Continuity of Rotation Representations in Neural Networks'
   venue: CVPR
@@ -2424,7 +2339,6 @@ papers:
   section: pr-rt
   paper: https://arxiv.org/abs/2106.03336
   code: https://github.com/arthurchen0518/DirectionNet
-  highlight: true
 - name: DenseCorrVol
   title: 'Extreme Rotation Estimation using Dense Correlation Volumes'
   venue: CVPR
@@ -2439,7 +2353,6 @@ papers:
   section: pr-rt
   paper: https://arxiv.org/abs/2210.05494
   code: https://github.com/nianticlabs/map-free-reloc
-  highlight: true
 - name: SRPose
   title: 'SRPose: Two-View Relative Pose Estimation with Sparse Keypoints'
   venue: ECCV
@@ -2447,7 +2360,6 @@ papers:
   section: pr-rt
   paper: https://arxiv.org/abs/2407.08199
   code: https://github.com/frickyinn/SRPose
-  highlight: true
 - name: Reloc3r
   title: 'Reloc3r: Large-Scale Training of Relative Camera Pose Regression for Generalizable, Fast, and Accurate Visual Localization'
   venue: CVPR
@@ -2483,7 +2395,6 @@ papers:
   section: pr-fe
   paper: https://arxiv.org/abs/1810.01575
   code: https://drive.google.com/file/d/1vcvzmZ0diUS0tpt20_TDwQ-Tl3XgG41m/view?usp=sharing
-  highlight: true
 - name: Zhou et al.
   title: 'To Learn or Not to Learn: Visual Localization from Essential Matrices'
   venue: ICRA
@@ -2491,7 +2402,6 @@ papers:
   section: pr-fe
   paper: https://arxiv.org/abs/1908.01293
   code: https://github.com/GrumpyZhou/visloc-relapose
-  highlight: true
 - name: SUN3D
   title: 'SUN3D: A Database of Big Spaces Reconstructed Using SfM and Object Labels'
   venue: ICCV
@@ -2692,7 +2602,7 @@ papers:
   section: ft-efficiency
   paper: https://arxiv.org/abs/2508.02278
   code: https://github.com/mr-chiwang/SGAD
-- name: MESA (TPAMI)
+- name: MESA
   title: 'MESA: Effective Matching Redundancy Reduction by Semantic Area Segmentation'
   venue: TPAMI
   year: 2026
@@ -2706,7 +2616,7 @@ papers:
   section: ft-efficiency
   paper: https://doi.org/10.1016/j.patcog.2026.113920
   code: https://github.com/Easonyesheng/A2PM-MESA
-- name: LoFTR (TPAMI)
+- name: LoFTR
   title: 'Semi-Dense Feature Matching With Transformers and Its Applications in Multiple-View Geometry'
   venue: TPAMI
   year: 2023

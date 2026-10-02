@@ -39,4 +39,3 @@ The README is generated from [`data/papers.yaml`](data/papers.yaml), so please e
 - **Code links:** link only official implementations released by the authors. Leave `code` empty if there is none.
 - **Venue:** use the venue where the paper was published; use `arXiv` for preprints and update it once the paper is accepted.
 - **No duplicates:** search the README before adding an entry. Journal extensions of conference papers are listed as separate entries.
-- `highlight: true` (🌟) is reserved for the representative methods shown in the survey's timeline.

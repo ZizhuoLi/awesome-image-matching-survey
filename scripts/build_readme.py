@@ -55,8 +55,6 @@ def code_cell(url):
 
 def paper_row(p):
     name = f"**{escape(p['name'])}**"
-    if p.get("highlight"):
-        name = "🌟 " + name
     title = escape(p["title"])
     if p.get("paper"):
         title = f"[{title}]({p['paper']})"

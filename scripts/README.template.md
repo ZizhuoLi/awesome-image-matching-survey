@@ -50,7 +50,7 @@ This repository collects the **{{PAPER_COUNT}} papers** discussed in the survey,
 
 {{TOC}}
 
-**How to read the tables.** 🌟 marks the representative methods shown in the survey's timeline. Paper links point to arXiv or open-access proceedings where possible, and to the publisher's page otherwise. The **Code** column links the official implementation (with its GitHub stars when hosted on GitHub); "—" means we did not find public code, and a few linked repositories are still waiting for the authors' code release. Rows are sorted by year, newest first.
+**How to read the tables.** Paper links point to arXiv or open-access proceedings where possible, and to the publisher's page otherwise. The **Code** column links the official implementation (with its GitHub stars when hosted on GitHub); "—" means we did not find public code, and a few linked repositories are still waiting for the authors' code release. Rows are sorted by year, newest first.
 
 {{PAPER_LIST}}
 
