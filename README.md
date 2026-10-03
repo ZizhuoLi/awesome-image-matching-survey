@@ -855,8 +855,14 @@ We will keep this list up to date as new learning-based image matching methods a
 
 ## ⭐ Star History
 
-<a href="https://star-history.com/#ZizhuoLi/awesome-image-matching-survey&Date">
-  <img src="https://api.star-history.com/svg?repos=ZizhuoLi/awesome-image-matching-survey&type=Date" alt="Star History Chart" width="600">
+
+
+<a href="https://www.star-history.com/?type=date&repos=ZizhuoLi%2Fawesome-image-matching-survey">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=ZizhuoLi/awesome-image-matching-survey&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=ZizhuoLi/awesome-image-matching-survey&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=ZizhuoLi/awesome-image-matching-survey&type=date&legend=top-left" />
+ </picture>
 </a>
 
 ## 📄 License
